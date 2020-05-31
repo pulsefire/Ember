@@ -1,3 +1,4 @@
 # Ember
-Ember Engine\n
+Ember Engine
+
 Only for Windows
