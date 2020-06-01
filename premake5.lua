@@ -54,7 +54,9 @@ filter "system:Windows"
 
     postbuildcommands 
     {
-        -- "cd ../bin/" .. OutputDir .. "&& mkdir -p Client",
+        --- For cmd
+        -- "{COPY} %{cfg.buildtarget.relpath} ../bin/" .. OutputDir .. "/Client"
+        -- bash
         "cp %{cfg.buildtarget.relpath} ../bin/" .. OutputDir .. "/Client"
     }
 
