@@ -7,6 +7,7 @@ ClientApp::ClientApp() : Ember::EmberApp()
     ER_WRN("Welcome to Ember Application!");
     ER_ERR("Hello!");
     ER_ERR("Hello!");
+
     std::cin.get();
 }
 
