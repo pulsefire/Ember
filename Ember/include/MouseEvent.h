@@ -2,37 +2,28 @@
 #define EMBER_MOUSE_EVENT
 
 #include "Event.h"
-#include <stringstream>
-
 
 namespace Ember
 {
-
-
     class EMBER_API MouseButtonEvent : public Event
     {
     public:
         
-        MouseButtonEvent(int button) 
-            : button(button)
+        MouseButtonEvent(int mouseButton) 
+            : mouseButton(mouseButton)
         {
 
         }
 
-        int GetEventCategory() override
+        DEFINE_EVENT_CATEGORY(InputEvent & MouseEvent);
+
+        int GetMouseButton()
         {
-            return EventCategory::MouseButtonEvent | EventCategory::InputEvent;
+            return mouseButton;
         }
 
-        int GetButton()
-        {
-            return button;
-        }
-
-    private:
-
-        int button;
-        
+    protected:
+        int mouseButton;
     };
 
     class EMBER_API MousePressedEvent : public MouseButtonEvent
@@ -45,26 +36,13 @@ namespace Ember
 
         }
 
-        static Event& GetStaticType()
-        {
-            return EventType::MousePressed;
-        }
+        DEFINE_EVENT_TYPE(MousePressed);
 
-        Event& GetEventType() override
-        {
-            return GetStaticType();
-        }
-
-        const char* GetName() override
-        {
-            return "MousePressed";
-        }
-
-        std::string ToString() override
+        virtual std::string ToString() const override
         {
             std::stringstream stream;
-            stream << "MousePressedEvent: " << button;
-            return stream;
+            stream << "MousePressedEvent: " << mouseButton;
+            return stream.str();
         }
 
     };
@@ -74,32 +52,19 @@ namespace Ember
     {
     public:
 
-        MouserReleasedEvent(int button)
+        MouseReleasedEvent(int button)
             : MouseButtonEvent(button)
         {
 
         }
 
-        static Event& GetStaticType()
-        {
-            return EventType::MouseReleased;
-        }
+        DEFINE_EVENT_TYPE(MouseReleased);
 
-        Event& GetEventType() override
-        {
-            return GetStaticType();
-        }
-
-        const char* GetName() override
-        {
-            return "MouseReleased";
-        }
-
-        std::string ToString() override
+        virtual std::string ToString() const override
         {
             std::stringstream stream;
-            stream << "MouseReleasedEvent: " << button;
-            return stream;
+            stream << "MouseReleasedEvent: " << mouseButton;
+            return stream.str();
         }
     };
 
@@ -107,36 +72,24 @@ namespace Ember
     {
     public:
 
-        MouseScrolledEvent(float offsetX, offsetY)
+        MouseScrolledEvent(float offsetX, float offsetY)
             : offsetX(offsetX), offsetY(offsetY)
         {
 
         }
 
-        EventType& GetStaticType()
-        {
-            return EventType::MouseMoved;
-        }
+        DEFINE_EVENT_TYPE(MouseScrolled);
+        DEFINE_EVENT_CATEGORY(InputEvent & MouseEvent);
 
-        EventType GetEventType() override
-        {
-            return GetStaticType();
-        }
-
-        const char* GetName() override
-        {
-            return "MouseMoved"
-        }
-
-        std::string ToString() override
+        virtual std::string ToString() const override
         {
             std::stringstream stream;
-            stream << "MouseMovedEvent: " << GetOffsetX() << ", " << GetOffsetY();
+            stream << "MouseScrolledEvent: " << GetOffsetX() << ", " << GetOffsetY();
             return stream.str();
         }
 
-        inline float GetOffsetX() { return offsetX; }
-        inline float GetOffsetY() { return offsetY; }
+        inline float GetOffsetX() const { return offsetX; }
+        inline float GetOffsetY() const { return offsetY; }
         
     private:
         float offsetX, offsetY;
@@ -151,40 +104,23 @@ namespace Ember
         {
 
         }
+        
+        DEFINE_EVENT_TYPE(MouseMoved);
+        DEFINE_EVENT_CATEGORY(InputEvent & MouseEvent);
 
-        int GetEventCategory() override
-        {
-            return MouseEvent | InputEvent
-        }
-
-        static Event& GetStaticType()
-        {
-            return EventType::MouseMoved;
-        }
-
-        EventType GetEventType() override
-        {
-            return GetStaticType();
-        }
-
-        const char* Getname() override
-        {
-            return "MouseMovedEvent";
-        }
-
-        std::string ToString() override
+        virtual std::string ToString() const override
         {
             std::stringstream stream;
             stream << "MouseMovedEvent: " << GetX() << ", " << GetY();
             return stream.str();
         }
 
-        inline float GetX() { return mouseX; };
-        inline float GetY() { return mouseY; };
+        inline float GetX() const { return mouseX; };
+        inline float GetY() const { return mouseY; };
 
     private:
         float mouseX, mouseY;
-    }
+    };
 
 };
 

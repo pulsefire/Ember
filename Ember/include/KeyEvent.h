@@ -4,8 +4,6 @@
 
 
 #include "Event.h"
-#include <stringstream>
-
 
 namespace Ember
 {
@@ -13,14 +11,11 @@ namespace Ember
     {
     public:
 
+        DEFINE_EVENT_CATEGORY(InputEvent & KeyboardEvent);
+
         int GetKeyCode()
         {
             return this->keycode;
-        }
-
-        virtual int GetEventCategory()
-        {
-            return InputEvent | KeyboardEvent; 
         }
 
     protected:
@@ -39,42 +34,29 @@ namespace Ember
     {
     public:
 
-        KeyPressedEvent(int keycode, int repeat_count) 
-            : KeyEvent(keycode), repeat_count(repeat_count) 
+        KeyPressedEvent(int keycode, int repeatCount) 
+            : KeyEvent(keycode), repeatCount(repeatCount) 
         {
             
         }
 
+        DEFINE_EVENT_TYPE(KeyPressed);
+
         inline int GetRepeatCount()
         {
-            return this->repeat_count;
+            return this->repeatCount;
         }
 
-        static EventType GetStaticType()
-        {
-            return EventType::KeyPressed;
-        }
-
-        EventType GetEventType() override
-        {
-            return GetStaticType();
-        }
-
-        const char* GetName() override
-        {
-            return "KeyPressed";
-        }
-
-        std::string ToString() override
+        virtual std::string ToString() const override
         {
             std::stringstream stream;
-            stream << "KeyPressedEvent: " << this->keycode << " (" << this->repeat_count << " repeats";
+            stream << "KeyPressedEvent: " << this->keycode << " (" << this->repeatCount << " repeats";
             return stream.str();
         }
 
     private:
 
-        int repeat_count;
+        int repeatCount;
     };
 
 
@@ -83,35 +65,20 @@ namespace Ember
     public:
 
         KeyReleasedEvent(int key_code) 
-            : KeyEvent(key_code) {}
-
-        static EventType GetStaticType()
+            : KeyEvent(key_code) 
         {
-            return EventType::KeyReleased;
+
         }
 
-        EventType GetEventType() override
-        {
-            return GetStaticType();
-        }
+        DEFINE_EVENT_TYPE(KeyReleased);
 
-        const char* GetName() override
-        {
-            return "KeyReleased";
-        }
-
-        std::string ToString() override
+        virtual std::string ToString() const override
         {
             std::stringstream stream;
-            stream << "KeyReleasedEvent: " << this->key_code;
+            stream << "KeyReleasedEvent: " << this->keycode;
             return stream.str();
         }
     };
-
-
-
-
-
 };
 
 

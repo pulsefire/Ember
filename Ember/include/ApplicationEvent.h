@@ -3,7 +3,6 @@
 
 #include "Event.h"
 
-
 namespace Ember
 {
     class EMBER_API WindowResizeEvent : public Event
@@ -16,28 +15,17 @@ namespace Ember
             
         }
 
-        static EventType GetStaticType()
-        {
-            return EventType::WindowResize;
-        }
+        DEFINE_EVENT_TYPE(WindowResize);
+        DEFINE_EVENT_CATEGORY(ApplicationEvent);
 
-        EventType GetEventType() override
+        virtual std::string ToString() const override
         {
-            return GetStaticType();
+            std::stringstream stream;
+            stream << "WindowResizeEvent: " << width << ", " << height;
+            return stream.str();
+            // return "WindowResizeEvent: " + std::to_string(width) + ", " + std::to_string(height);
         }
-
-        const char* GetName() override
-        {
-            return "WindowResize"
-        }
-
-        int GetEventCategory() override
-        {
-            return EventCategory::ApplicationEvent;
-        }
-
     private:
-
         int width, height;
     };
 
@@ -51,24 +39,14 @@ namespace Ember
 
         }
 
-        static EventType GetStaticType()
-        {
-            return EventType::WindowClose;
-        }
+        DEFINE_EVENT_TYPE(WindowClose);
+        DEFINE_EVENT_CATEGORY(ApplicationEvent)
 
-        EventType GetEventType() override
+        virtual std::string ToString() const override
         {
-            return GetStaticType();
-        }
-
-        const char* GetName() override
-        {
-            return "WindowClose"
-        }
-
-        int GetEventCategory() override
-        {
-            return EventCategory::ApplicationEvent;
+            std::stringstream stream;
+            stream << "WindowCloseEvent";
+            return stream.str();
         }
     };
 
@@ -81,24 +59,14 @@ namespace Ember
 
         }
 
-        static EventType GetStaticType()
-        {
-            return EventType::AppTick;
-        }
+        DEFINE_EVENT_TYPE(AppTick);
+        DEFINE_EVENT_CATEGORY(ApplicationEvent);
 
-        EventType GetEventType() override
+        virtual std::string ToString() const override
         {
-            return GetStaticType();
-        }
-
-        const char* GetName() override
-        {
-            return "AppTick"
-        }
-
-        int GetEventCategory() override
-        {
-            return EventCategory::ApplicationEvent;
+            std::stringstream stream;
+            stream << "AppTickEvent";
+            return stream.str();
         }
     };
 
@@ -111,24 +79,14 @@ namespace Ember
 
         }
 
-        static EventType GetStaticType()
-        {
-            return EventType::AppUpdate;
-        }
+        DEFINE_EVENT_TYPE(AppUpdate);
+        DEFINE_EVENT_CATEGORY(ApplicationEvent);
 
-        EventType GetEventType() override
+        virtual std::string ToString() const override
         {
-            return GetStaticType();
-        }
-
-        const char* GetName() override
-        {
-            return "AppUpdate"
-        }
-
-        int GetEventCategory() override
-        {
-            return EventCategory::ApplicationEvent;
+            std::stringstream stream;
+            stream << "AppUpdateEvent";
+            return stream.str();
         }
     };
 
@@ -140,32 +98,16 @@ namespace Ember
         {
 
         }
+        DEFINE_EVENT_TYPE(AppRender);
+        DEFINE_EVENT_CATEGORY(ApplicationEvent);
 
-        static EventType GetStaticType()
+        virtual std::string ToString() const override
         {
-            return EventType::AppRender;
+            std::stringstream stream;
+            stream << "AppRenderEvent";
+            return stream.str();
         }
-
-        EventType GetEventType() override
-        {
-            return GetStaticType();
-        }
-
-        const char* GetName() override
-        {
-            return "AppRender"
-        }
-
-        int GetEventCategory() override
-        {
-            return EventCategory::ApplicationEvent;
-        }
-    }
-
-
-
-
-
+    };
 };
 
 #endif

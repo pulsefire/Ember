@@ -21,7 +21,7 @@ namespace Ember
 
     void EmberApp::Run()
     {
-        
+
     }
     
 };

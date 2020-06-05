@@ -42,7 +42,12 @@
  ../Ember/vendor/spdlog/include/spdlog/spdlog-inl.h \
  ../Ember/vendor/spdlog/include/spdlog/sinks/stdout_color_sinks.h \
  ../Ember/vendor/spdlog/include/spdlog/sinks/stdout_color_sinks-inl.h \
- ../Ember/include/EmberApp.h ../Ember/include/EntryPoint.h
+ ../Ember/include/Event.h \
+ ../Ember/vendor/spdlog/include/spdlog/fmt/ostr.h \
+ ../Ember/vendor/spdlog/include/spdlog/fmt/bundled/ostream.h \
+ ../Ember/include/EmberApp.h ../Ember/include/Log.h \
+ ../Ember/include/ApplicationEvent.h ../Ember/include/Event.h \
+ ../Ember/include/EntryPoint.h
 
 ../Client/include/ClientApp.h:
 
@@ -136,6 +141,18 @@
 
 ../Ember/vendor/spdlog/include/spdlog/sinks/stdout_color_sinks-inl.h:
 
+../Ember/include/Event.h:
+
+../Ember/vendor/spdlog/include/spdlog/fmt/ostr.h:
+
+../Ember/vendor/spdlog/include/spdlog/fmt/bundled/ostream.h:
+
 ../Ember/include/EmberApp.h:
+
+../Ember/include/Log.h:
+
+../Ember/include/ApplicationEvent.h:
+
+../Ember/include/Event.h:
 
 ../Ember/include/EntryPoint.h:

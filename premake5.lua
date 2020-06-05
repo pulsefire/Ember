@@ -39,7 +39,18 @@ files
 includedirs
 {
     "./%{prj.name}/vendor/spdlog/include",
-    "./%{prj.name}/include"
+    "./%{prj.name}/include",
+    "./%{prj.name}/vendor/"
+}
+
+links
+{
+    "glfw3dll"
+}
+
+libdirs
+{
+    "./%{prj.name}/lib/"
 }
 
 filter "system:Windows"

@@ -2,6 +2,8 @@
 #define EMBER_APP
 
 #include "Core.h"
+#include "Log.h"
+#include "ApplicationEvent.h"
 
 
 namespace Ember

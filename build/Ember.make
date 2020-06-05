@@ -16,15 +16,15 @@ ifeq ($(config),debug_windows)
   TARGET = $(TARGETDIR)/Ember.dll
   OBJDIR = ../obj/Debug-x86_64/Ember
   DEFINES += -DBUILD_EMBER_DLL -DER_DEBUG
-  INCLUDES += -I../Ember/vendor/spdlog/include -I../Ember/include
+  INCLUDES += -I../Ember/vendor/spdlog/include -I../Ember/include -I../Ember/vendor
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
   ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m64 -g
   ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -m64 -g -std=c++11
   ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
-  LIBS +=
+  LIBS += -lglfw3dll
   LDDEPS +=
-  ALL_LDFLAGS += $(LDFLAGS) -L/usr/lib64 -m64 -shared -Wl,--out-implib="../bin/Debug-x86_64/Ember/Ember.lib"
+  ALL_LDFLAGS += $(LDFLAGS) -L../Ember/lib -L/usr/lib64 -m64 -shared -Wl,--out-implib="../bin/Debug-x86_64/Ember/Ember.lib"
   LINKCMD = $(CXX) -o "$@" $(OBJECTS) $(RESOURCES) $(ALL_LDFLAGS) $(LIBS)
   define PREBUILDCMDS
   endef
@@ -45,15 +45,15 @@ ifeq ($(config),release_windows)
   TARGET = $(TARGETDIR)/Ember.dll
   OBJDIR = ../obj/Release-x86_64/Ember
   DEFINES += -DBUILD_EMBER_DLL -DER_RELEASE
-  INCLUDES += -I../Ember/vendor/spdlog/include -I../Ember/include
+  INCLUDES += -I../Ember/vendor/spdlog/include -I../Ember/include -I../Ember/vendor
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
   ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m64 -O2
   ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -m64 -O2 -std=c++11
   ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
-  LIBS +=
+  LIBS += -lglfw3dll
   LDDEPS +=
-  ALL_LDFLAGS += $(LDFLAGS) -L/usr/lib64 -m64 -shared -Wl,--out-implib="../bin/Release-x86_64/Ember/Ember.lib" -s
+  ALL_LDFLAGS += $(LDFLAGS) -L../Ember/lib -L/usr/lib64 -m64 -shared -Wl,--out-implib="../bin/Release-x86_64/Ember/Ember.lib" -s
   LINKCMD = $(CXX) -o "$@" $(OBJECTS) $(RESOURCES) $(ALL_LDFLAGS) $(LIBS)
   define PREBUILDCMDS
   endef
