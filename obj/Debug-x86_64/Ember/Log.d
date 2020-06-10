@@ -1,5 +1,5 @@
 ../obj/Debug-x86_64/Ember/Log.o: ../Ember/src/Log.cpp \
- ../Ember/include/Log.h ../Ember/include/Core.h \
+ ../Ember/include/Ember/Log.h ../Ember/include/Ember/Core.h \
  ../Ember/vendor/spdlog/include/spdlog/spdlog.h \
  ../Ember/vendor/spdlog/include/spdlog/common.h \
  ../Ember/vendor/spdlog/include/spdlog/tweakme.h \
@@ -43,9 +43,9 @@
  ../Ember/vendor/spdlog/include/spdlog/sinks/stdout_color_sinks.h \
  ../Ember/vendor/spdlog/include/spdlog/sinks/stdout_color_sinks-inl.h
 
-../Ember/include/Log.h:
+../Ember/include/Ember/Log.h:
 
-../Ember/include/Core.h:
+../Ember/include/Ember/Core.h:
 
 ../Ember/vendor/spdlog/include/spdlog/spdlog.h:
 

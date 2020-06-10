@@ -3,7 +3,7 @@
 
 ClientApp::ClientApp() : Ember::EmberApp()
 {
-    ER_CORE_INF("Ember Core Ready!");
+    ER_CORE_ERR("Ember Core Ready!");
     ER_WRN("Welcome to Ember Application!");
     
     std::cin.get();
@@ -14,7 +14,7 @@ ClientApp::~ClientApp()
 
 }
 
-Ember::EmberApp* Ember::createApp()
+Ember::EmberApp* Ember::CreateApp()
 {
     return new ClientApp();
 }

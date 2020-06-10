@@ -32,15 +32,14 @@ project "Ember"
 
 files
 {
-    "./%{prj.name}/src/**.cpp",
-    "./%{prj.name}/include/**.h"
+    "./%{prj.name}/src/**.cpp"
 }
 
 includedirs
 {
+    "./%{prj.name}/vendor/",
     "./%{prj.name}/vendor/spdlog/include",
-    "./%{prj.name}/include",
-    "./%{prj.name}/vendor/"
+    "./%{prj.name}/include"
 }
 
 links
@@ -94,14 +93,12 @@ project "Client"
 
 files
 {
-    "./%{prj.name}/src/**.cpp",
-    "./%{prj.name}/include/**.h"
+    "./%{prj.name}/src/**.cpp"
 }
 
 includedirs
 {
     "./%{prj.name}/include",
-    "./Ember/",
     "./Ember/include",
     "./Ember/vendor/spdlog/include",
 }

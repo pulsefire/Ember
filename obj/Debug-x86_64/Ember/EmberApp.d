@@ -1,6 +1,7 @@
 ../obj/Debug-x86_64/Ember/EmberApp.o: ../Ember/src/EmberApp.cpp \
- ../Ember/include/EmberApp.h ../Ember/include/Core.h \
- ../Ember/include/Log.h ../Ember/vendor/spdlog/include/spdlog/spdlog.h \
+ ../Ember/include/Ember/EmberApp.h ../Ember/include/Ember/Core.h \
+ ../Ember/include/Ember/Log.h \
+ ../Ember/vendor/spdlog/include/spdlog/spdlog.h \
  ../Ember/vendor/spdlog/include/spdlog/common.h \
  ../Ember/vendor/spdlog/include/spdlog/tweakme.h \
  ../Ember/vendor/spdlog/include/spdlog/details/null_mutex.h \
@@ -42,16 +43,16 @@
  ../Ember/vendor/spdlog/include/spdlog/spdlog-inl.h \
  ../Ember/vendor/spdlog/include/spdlog/sinks/stdout_color_sinks.h \
  ../Ember/vendor/spdlog/include/spdlog/sinks/stdout_color_sinks-inl.h \
- ../Ember/include/ApplicationEvent.h ../Ember/include/Event.h \
+ ../Ember/include/Ember/Event/ApplicationEvent.h \
+ ../Ember/include/Ember/Event/Event.h \
  ../Ember/vendor/spdlog/include/spdlog/fmt/ostr.h \
- ../Ember/vendor/spdlog/include/spdlog/fmt/bundled/ostream.h \
- ../Ember/vendor/GLFW/glfw3.h ../Ember/include/Log.h
+ ../Ember/vendor/spdlog/include/spdlog/fmt/bundled/ostream.h
 
-../Ember/include/EmberApp.h:
+../Ember/include/Ember/EmberApp.h:
 
-../Ember/include/Core.h:
+../Ember/include/Ember/Core.h:
 
-../Ember/include/Log.h:
+../Ember/include/Ember/Log.h:
 
 ../Ember/vendor/spdlog/include/spdlog/spdlog.h:
 
@@ -137,14 +138,10 @@
 
 ../Ember/vendor/spdlog/include/spdlog/sinks/stdout_color_sinks-inl.h:
 
-../Ember/include/ApplicationEvent.h:
+../Ember/include/Ember/Event/ApplicationEvent.h:
 
-../Ember/include/Event.h:
+../Ember/include/Ember/Event/Event.h:
 
 ../Ember/vendor/spdlog/include/spdlog/fmt/ostr.h:
 
 ../Ember/vendor/spdlog/include/spdlog/fmt/bundled/ostream.h:
-
-../Ember/vendor/GLFW/glfw3.h:
-
-../Ember/include/Log.h:

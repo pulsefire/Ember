@@ -1,6 +1,7 @@
 ../obj/Debug-x86_64/Client/ClientApp.o: ../Client/src/ClientApp.cpp \
- ../Client/include/ClientApp.h ../Ember/Ember.h ../Ember/include/Log.h \
- ../Ember/include/Core.h ../Ember/vendor/spdlog/include/spdlog/spdlog.h \
+ ../Client/include/ClientApp.h ../Ember/include/Ember.h \
+ ../Ember/include/Ember/Log.h ../Ember/include/Ember/Core.h \
+ ../Ember/vendor/spdlog/include/spdlog/spdlog.h \
  ../Ember/vendor/spdlog/include/spdlog/common.h \
  ../Ember/vendor/spdlog/include/spdlog/tweakme.h \
  ../Ember/vendor/spdlog/include/spdlog/details/null_mutex.h \
@@ -42,20 +43,20 @@
  ../Ember/vendor/spdlog/include/spdlog/spdlog-inl.h \
  ../Ember/vendor/spdlog/include/spdlog/sinks/stdout_color_sinks.h \
  ../Ember/vendor/spdlog/include/spdlog/sinks/stdout_color_sinks-inl.h \
- ../Ember/include/Event.h \
+ ../Ember/include/Ember/Event/Event.h \
  ../Ember/vendor/spdlog/include/spdlog/fmt/ostr.h \
  ../Ember/vendor/spdlog/include/spdlog/fmt/bundled/ostream.h \
- ../Ember/include/EmberApp.h ../Ember/include/Log.h \
- ../Ember/include/ApplicationEvent.h ../Ember/include/Event.h \
- ../Ember/include/EntryPoint.h
+ ../Ember/include/Ember/EmberApp.h ../Ember/include/Ember/Log.h \
+ ../Ember/include/Ember/Event/ApplicationEvent.h \
+ ../Ember/include/Ember/Event/Event.h ../Ember/include/Ember/EntryPoint.h
 
 ../Client/include/ClientApp.h:
 
-../Ember/Ember.h:
+../Ember/include/Ember.h:
 
-../Ember/include/Log.h:
+../Ember/include/Ember/Log.h:
 
-../Ember/include/Core.h:
+../Ember/include/Ember/Core.h:
 
 ../Ember/vendor/spdlog/include/spdlog/spdlog.h:
 
@@ -141,18 +142,18 @@
 
 ../Ember/vendor/spdlog/include/spdlog/sinks/stdout_color_sinks-inl.h:
 
-../Ember/include/Event.h:
+../Ember/include/Ember/Event/Event.h:
 
 ../Ember/vendor/spdlog/include/spdlog/fmt/ostr.h:
 
 ../Ember/vendor/spdlog/include/spdlog/fmt/bundled/ostream.h:
 
-../Ember/include/EmberApp.h:
+../Ember/include/Ember/EmberApp.h:
 
-../Ember/include/Log.h:
+../Ember/include/Ember/Log.h:
 
-../Ember/include/ApplicationEvent.h:
+../Ember/include/Ember/Event/ApplicationEvent.h:
 
-../Ember/include/Event.h:
+../Ember/include/Ember/Event/Event.h:
 
-../Ember/include/EntryPoint.h:
+../Ember/include/Ember/EntryPoint.h:

@@ -16,7 +16,7 @@ ifeq ($(config),debug_windows)
   TARGET = $(TARGETDIR)/Client.exe
   OBJDIR = ../obj/Debug-x86_64/Client
   DEFINES += -DER_DEBUG
-  INCLUDES += -I../Client/include -I../Ember -I../Ember/include -I../Ember/vendor/spdlog/include
+  INCLUDES += -I../Client/include -I../Ember/include -I../Ember/vendor/spdlog/include
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
   ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m64 -g
@@ -43,7 +43,7 @@ ifeq ($(config),release_windows)
   TARGET = $(TARGETDIR)/Client.exe
   OBJDIR = ../obj/Release-x86_64/Client
   DEFINES += -DER_RELEASE
-  INCLUDES += -I../Client/include -I../Ember -I../Ember/include -I../Ember/vendor/spdlog/include
+  INCLUDES += -I../Client/include -I../Ember/include -I../Ember/vendor/spdlog/include
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
   ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m64 -O2
