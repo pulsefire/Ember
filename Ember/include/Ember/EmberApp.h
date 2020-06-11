@@ -4,6 +4,7 @@
 #include "Ember/Core.h"
 #include "Ember/Log.h"
 #include "Ember/Event/ApplicationEvent.h"
+#include "Ember/Window.h"
 
 
 namespace Ember
@@ -17,9 +18,13 @@ namespace Ember
         virtual ~EmberApp();
 
         void Run();
+
+        void OnEvent(Event& event);
+
+        Window* m_Window;
     };
 
-    // Returns an instance of Client Application.
+    // Returns new instance of Client Application.
     extern EmberApp* CreateApp();
 
 };

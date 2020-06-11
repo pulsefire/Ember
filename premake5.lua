@@ -32,13 +32,15 @@ project "Ember"
 
 files
 {
-    "./%{prj.name}/src/**.cpp"
+    "./%{prj.name}/src/**.cpp",
+    "./%{prj.name}/vendor/glad/src/**.c"
 }
 
 includedirs
 {
     "./%{prj.name}/vendor/",
     "./%{prj.name}/vendor/spdlog/include",
+    "./%{prj.name}/vendor/glad/include",
     "./%{prj.name}/include"
 }
 
@@ -100,7 +102,9 @@ includedirs
 {
     "./%{prj.name}/include",
     "./Ember/include",
+    "./Ember/vendor/",
     "./Ember/vendor/spdlog/include",
+    "./Ember/vendor/glad/include"
 }
 
 links

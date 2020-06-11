@@ -16,7 +16,7 @@ ifeq ($(config),debug_windows)
   TARGET = $(TARGETDIR)/Ember.dll
   OBJDIR = ../obj/Debug-x86_64/Ember
   DEFINES += -DBUILD_EMBER_DLL -DER_DEBUG
-  INCLUDES += -I../Ember/vendor -I../Ember/vendor/spdlog/include -I../Ember/include
+  INCLUDES += -I../Ember/vendor -I../Ember/vendor/spdlog/include -I../Ember/vendor/glad/include -I../Ember/include
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
   ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m64 -g
@@ -45,7 +45,7 @@ ifeq ($(config),release_windows)
   TARGET = $(TARGETDIR)/Ember.dll
   OBJDIR = ../obj/Release-x86_64/Ember
   DEFINES += -DBUILD_EMBER_DLL -DER_RELEASE
-  INCLUDES += -I../Ember/vendor -I../Ember/vendor/spdlog/include -I../Ember/include
+  INCLUDES += -I../Ember/vendor -I../Ember/vendor/spdlog/include -I../Ember/vendor/glad/include -I../Ember/include
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
   ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m64 -O2
@@ -71,6 +71,8 @@ endif
 OBJECTS := \
 	$(OBJDIR)/EmberApp.o \
 	$(OBJDIR)/Log.o \
+	$(OBJDIR)/Window.o \
+	$(OBJDIR)/glad.o \
 
 RESOURCES := \
 
@@ -135,6 +137,12 @@ $(OBJDIR)/EmberApp.o: ../Ember/src/EmberApp.cpp
 $(OBJDIR)/Log.o: ../Ember/src/Log.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/Window.o: ../Ember/src/Window.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/glad.o: ../Ember/vendor/glad/src/glad.c
+	@echo $(notdir $<)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 
 -include $(OBJECTS:%.o=%.d)
 ifneq (,$(PCH))

@@ -48,7 +48,12 @@
  ../Ember/vendor/spdlog/include/spdlog/fmt/bundled/ostream.h \
  ../Ember/include/Ember/EmberApp.h ../Ember/include/Ember/Log.h \
  ../Ember/include/Ember/Event/ApplicationEvent.h \
- ../Ember/include/Ember/Event/Event.h ../Ember/include/Ember/EntryPoint.h
+ ../Ember/include/Ember/Event/Event.h ../Ember/include/Ember/Window.h \
+ ../Ember/include/Ember/Event/KeyEvent.h \
+ ../Ember/include/Ember/Event/MouseEvent.h \
+ ../Ember/vendor/glad/include/glad/glad.h \
+ ../Ember/vendor/glad/include/KHR/khrplatform.h \
+ ../Ember/vendor/GLFW/glfw3.h ../Ember/include/Ember/EntryPoint.h
 
 ../Client/include/ClientApp.h:
 
@@ -155,5 +160,17 @@
 ../Ember/include/Ember/Event/ApplicationEvent.h:
 
 ../Ember/include/Ember/Event/Event.h:
+
+../Ember/include/Ember/Window.h:
+
+../Ember/include/Ember/Event/KeyEvent.h:
+
+../Ember/include/Ember/Event/MouseEvent.h:
+
+../Ember/vendor/glad/include/glad/glad.h:
+
+../Ember/vendor/glad/include/KHR/khrplatform.h:
+
+../Ember/vendor/GLFW/glfw3.h:
 
 ../Ember/include/Ember/EntryPoint.h:
