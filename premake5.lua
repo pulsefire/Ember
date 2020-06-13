@@ -46,7 +46,8 @@ includedirs
 
 links
 {
-    "glfw3dll"
+    "glfw3dll",
+    "spdlog"
 }
 
 libdirs
@@ -104,12 +105,18 @@ includedirs
     "./Ember/include",
     "./Ember/vendor/",
     "./Ember/vendor/spdlog/include",
-    "./Ember/vendor/glad/include"
+    -- "./Ember/vendor/glad/include"
 }
 
 links
 {
-    "Ember"
+    "Ember",
+    "spdlog",
+    -- "glfw3dll"
+}
+
+libdirs {
+    "./%{prj.name}/lib"
 }
 
 filter "system:Windows"

@@ -24,7 +24,10 @@ namespace Ember
 
     void EmberApp::Run()
     {
-
+        while (true)
+        {
+            this->m_Window->OnUpdate();
+        }
     }
 
     void EmberApp::OnEvent(Event& event)

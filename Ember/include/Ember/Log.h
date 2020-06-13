@@ -1,8 +1,10 @@
 #ifndef EMBER_LOG
 #define EMBER_LOG
 
+#define SPDLOG_COMPILED_LIB
 #include <memory>
 #include "Ember/Core.h"
+
 #include "spdlog/spdlog.h"
 #include "spdlog/sinks/stdout_color_sinks.h"
 

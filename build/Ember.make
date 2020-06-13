@@ -22,7 +22,7 @@ ifeq ($(config),debug_windows)
   ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m64 -g
   ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -m64 -g -std=c++11
   ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
-  LIBS += -lglfw3dll
+  LIBS += -lglfw3dll -lspdlog
   LDDEPS +=
   ALL_LDFLAGS += $(LDFLAGS) -L../Ember/lib -L/usr/lib64 -m64 -shared -Wl,--out-implib="../bin/Debug-x86_64/Ember/Ember.lib"
   LINKCMD = $(CXX) -o "$@" $(OBJECTS) $(RESOURCES) $(ALL_LDFLAGS) $(LIBS)
@@ -51,7 +51,7 @@ ifeq ($(config),release_windows)
   ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m64 -O2
   ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -m64 -O2 -std=c++11
   ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
-  LIBS += -lglfw3dll
+  LIBS += -lglfw3dll -lspdlog
   LDDEPS +=
   ALL_LDFLAGS += $(LDFLAGS) -L../Ember/lib -L/usr/lib64 -m64 -shared -Wl,--out-implib="../bin/Release-x86_64/Ember/Ember.lib" -s
   LINKCMD = $(CXX) -o "$@" $(OBJECTS) $(RESOURCES) $(ALL_LDFLAGS) $(LIBS)

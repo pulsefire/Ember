@@ -50,7 +50,7 @@ namespace Ember
         virtual std::string ToString() const override
         {
             std::stringstream stream;
-            stream << "KeyPressedEvent: " << this->keycode << " (" << this->repeatCount << " repeats";
+            stream << "KeyPressedEvent: " << this->keycode << " (" << this->repeatCount << " repeats)";
             return stream.str();
         }
 

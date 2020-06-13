@@ -6,6 +6,9 @@
 #include <functional>
 
 #include "Ember/Core.h"
+
+#define SPDLOG_COMPILED_LIB
+#include "spdlog/spdlog.h"
 #include "spdlog/fmt/ostr.h"
 
 
