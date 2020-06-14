@@ -15,7 +15,7 @@ ifeq ($(config),debug_windows)
   TARGETDIR = ../bin/Debug-x86_64/Ember
   TARGET = $(TARGETDIR)/Ember.dll
   OBJDIR = ../obj/Debug-x86_64/Ember
-  DEFINES += -DBUILD_EMBER_DLL -DER_DEBUG
+  DEFINES += -DBUILD_EMBER_DLL -DER_ASSERTIONS_ENABLED -DER_DEBUG
   INCLUDES += -I../Ember/vendor -I../Ember/vendor/spdlog/include -I../Ember/vendor/glad/include -I../Ember/include
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
@@ -44,7 +44,7 @@ ifeq ($(config),release_windows)
   TARGETDIR = ../bin/Release-x86_64/Ember
   TARGET = $(TARGETDIR)/Ember.dll
   OBJDIR = ../obj/Release-x86_64/Ember
-  DEFINES += -DBUILD_EMBER_DLL -DER_RELEASE
+  DEFINES += -DBUILD_EMBER_DLL -DER_ASSERTIONS_ENABLED -DER_RELEASE
   INCLUDES += -I../Ember/vendor -I../Ember/vendor/spdlog/include -I../Ember/vendor/glad/include -I../Ember/include
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)

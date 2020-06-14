@@ -62,7 +62,8 @@ filter "system:Windows"
 
     defines 
     {
-        "BUILD_EMBER_DLL"
+        "BUILD_EMBER_DLL",
+        "ER_ASSERTIONS_ENABLED"
     }
 
     postbuildcommands 
@@ -105,7 +106,7 @@ includedirs
     "./Ember/include",
     "./Ember/vendor/",
     "./Ember/vendor/spdlog/include",
-    -- "./Ember/vendor/glad/include"
+    "./Ember/vendor/glad/include"
 }
 
 links
@@ -123,6 +124,10 @@ filter "system:Windows"
     cppdialect "C++11"
     staticruntime "On"
     systemversion "latest"
+
+    defines {
+        "ER_ASSERTIONS_ENABLED"
+    }
 
 filter "configurations:Debug"
     defines "ER_DEBUG"

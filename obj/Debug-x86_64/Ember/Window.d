@@ -26,7 +26,13 @@
  ../Ember/include/Ember/Event/MouseEvent.h \
  ../Ember/vendor/glad/include/glad/glad.h \
  ../Ember/vendor/glad/include/KHR/khrplatform.h \
- ../Ember/vendor/GLFW/glfw3.h
+ ../Ember/vendor/GLFW/glfw3.h ../Ember/include/Ember/Log.h \
+ ../Ember/vendor/spdlog/include/spdlog/sinks/stdout_color_sinks.h \
+ ../Ember/vendor/spdlog/include/spdlog/sinks/wincolor_sink.h \
+ ../Ember/vendor/spdlog/include/spdlog/details/console_globals.h \
+ ../Ember/vendor/spdlog/include/spdlog/sinks/sink.h \
+ ../Ember/vendor/spdlog/include/spdlog/formatter.h \
+ ../Ember/vendor/spdlog/include/spdlog/details/windows_include.h
 
 ../Ember/include/Ember/Window.h:
 
@@ -85,3 +91,17 @@
 ../Ember/vendor/glad/include/KHR/khrplatform.h:
 
 ../Ember/vendor/GLFW/glfw3.h:
+
+../Ember/include/Ember/Log.h:
+
+../Ember/vendor/spdlog/include/spdlog/sinks/stdout_color_sinks.h:
+
+../Ember/vendor/spdlog/include/spdlog/sinks/wincolor_sink.h:
+
+../Ember/vendor/spdlog/include/spdlog/details/console_globals.h:
+
+../Ember/vendor/spdlog/include/spdlog/sinks/sink.h:
+
+../Ember/vendor/spdlog/include/spdlog/formatter.h:
+
+../Ember/vendor/spdlog/include/spdlog/details/windows_include.h:

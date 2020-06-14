@@ -19,12 +19,12 @@ namespace Ember
 
     EmberApp::~EmberApp()
     {
-        
+        delete this->m_Window;
     }
 
     void EmberApp::Run()
     {
-        while (true)
+        while (this->isRunning)
         {
             this->m_Window->OnUpdate();
         }
@@ -32,13 +32,17 @@ namespace Ember
 
     void EmberApp::OnEvent(Event& event)
     {
-        ER_CORE_INF(event);
+        EventDispatcher dispatcher(event);
+        dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
+        ER_CORE_TRC(event);
     }
 
-    // Returns new instance of Window.
-    Window* Window::Create(const WindowData& data)
+    bool EmberApp::OnWindowClose(WindowCloseEvent& event)
     {
-        return new Window(data);
+        this->isRunning = false;
+        return true;
     }
+
+
     
 };

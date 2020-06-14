@@ -14,13 +14,13 @@ namespace Ember
     public:
 
         EmberApp();
-
         virtual ~EmberApp();
-
+        
         void Run();
-
         void OnEvent(Event& event);
+        bool OnWindowClose(WindowCloseEvent& event);
 
+        bool isRunning = true;
         Window* m_Window;
     };
 

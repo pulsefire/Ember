@@ -1,8 +1,19 @@
 #include "Ember/Window.h"
-
+#include "Ember/Log.h"
 
 namespace Ember
 {
+    bool Window::glfwInitialised = false;
+    // Returns new instance of Window.
+    Window* Window::Create(const WindowData& data)
+    {
+        return new Window(data);
+    }
+
+    static void glfwErrorCallback(int error, const char* desc)
+    {
+        ER_CORE_ERR("glfw ERROR!", error, desc);
+    }
 
     Window::Window(const Window::WindowData& data)
     {
@@ -11,7 +22,7 @@ namespace Ember
 
     Window::~Window()
     {
-
+        this->Shutdown();
     }
 
     void Window::Init(const Window::WindowData& data)
@@ -23,19 +34,20 @@ namespace Ember
         if (!glfwInitialised)
         {
             glfwInitialised = true;
-            glfwInit();
+            int success = glfwInit();
+            glfwSetErrorCallback(glfwErrorCallback);
+            ER_CORE_ASSERT(success, "Unable to initialize glfw!");
         }
         // Create glfw window
         this->m_Buffer = glfwCreateWindow(this->WinData.width, this->WinData.height, this->WinData.title.c_str(), NULL, NULL);
         glfwMakeContextCurrent(this->m_Buffer);
-
+        // Load OpenGL
         gladLoadGL();
-
         // Set WindowData as user defined data. 
         glfwSetWindowUserPointer(this->m_Buffer, &this->WinData);
+        this->SetVSync(true);
 
         // Set glfw callbacks.
-
         glfwSetWindowCloseCallback(this->m_Buffer, [](GLFWwindow* window)
         {
             Window::WindowData data = *(Window::WindowData*)glfwGetWindowUserPointer(window);
@@ -43,8 +55,17 @@ namespace Ember
             data.EventCallback(event);
         });
 
-        glfwSetKeyCallback(this->m_Buffer, [](GLFWwindow* window, int key, int scancode, int action, int mods){
+        glfwSetWindowSizeCallback(this->m_Buffer, [](GLFWwindow* window, int width, int height)
+        {
+            Window::WindowData data = *(Window::WindowData*)glfwGetWindowUserPointer(window);
+            data.width = width;
+            data.height = height;
+            WindowResizeEvent event(width, height);
+            data.EventCallback(event);
+        }); 
 
+        glfwSetKeyCallback(this->m_Buffer, [](GLFWwindow* window, int key, int scancode, int action, int mods)
+        {
             Window::WindowData data = *(Window::WindowData*)glfwGetWindowUserPointer(window);
 
             switch (action)
@@ -70,7 +91,44 @@ namespace Ember
             }
         });
 
-    }
+        glfwSetMouseButtonCallback(this->m_Buffer, [](GLFWwindow* window, int button, int action, int mods)
+        {
+            Window::WindowData data = *(Window::WindowData*)glfwGetWindowUserPointer(window);
+
+            switch (action)
+            {
+                case GLFW_PRESS:
+                {
+                    MousePressedEvent event(button);
+                    data.EventCallback(event);
+                    break;
+                }
+                case GLFW_RELEASE:
+                {
+                    MouseReleasedEvent event(button);
+                    data.EventCallback(event);
+                    break;
+                }
+            }
+
+        });
+
+        glfwSetScrollCallback(this->m_Buffer, [](GLFWwindow* window, double xOffset, double yOffset)
+        {
+            Window::WindowData data = *(Window::WindowData*)glfwGetWindowUserPointer(window);
+            MouseScrolledEvent event(xOffset, yOffset);
+            data.EventCallback(event);
+        });
+
+        glfwSetCursorPosCallback(this->m_Buffer, [](GLFWwindow* window, double xPos, double yPos)
+        {
+            Window::WindowData data = *(Window::WindowData*)glfwGetWindowUserPointer(window);
+            MouseMovedEvent event(xPos, yPos);
+            data.EventCallback(event);
+        });
+
+
+    };
 
     void Window::SetEventCallback(const EventFn& callback)
     {
@@ -95,5 +153,8 @@ namespace Ember
         glfwSwapBuffers(this->m_Buffer);
     }
 
-    bool Window::glfwInitialised = false;
+    void Window::Shutdown()
+    {
+        glfwDestroyWindow(this->m_Buffer);
+    }
 };

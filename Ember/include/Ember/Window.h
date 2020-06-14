@@ -24,7 +24,6 @@ namespace Ember
         {
             int width, height;
             std::string title;
-
             EventFn EventCallback;
 
             WindowData(int w = 1280, int h = 720, std::string t = "Ember Engine")
@@ -41,12 +40,12 @@ namespace Ember
         void SetEventCallback(const EventFn& callback);
         void SetVSync(bool IsEnabled);
         void OnUpdate();
-
-        static Window* Create(const WindowData& data = WindowData());
+        void Shutdown();
 
         WindowData WinData;
         GLFWwindow* m_Buffer;
-
+        
+        static Window* Create(const WindowData& data = WindowData());
         static bool glfwInitialised;
     };
 };
