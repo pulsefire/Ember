@@ -15,16 +15,16 @@ ifeq ($(config),debug_windows)
   TARGETDIR = ../bin/Debug-x86_64/Client
   TARGET = $(TARGETDIR)/Client.exe
   OBJDIR = ../obj/Debug-x86_64/Client
-  DEFINES += -DER_ASSERTIONS_ENABLED -DER_DEBUG
-  INCLUDES += -I../Client/include -I../Ember/include -I../Ember/vendor -I../Ember/vendor/spdlog/include -I../Ember/vendor/glad/include
+  DEFINES += -DER_ASSERTIONS_ENABLED -DDEBUG
+  INCLUDES += -I../Client/src -I../Ember/src -I../Ember/vendor/glad/include -I../Ember/vendor/GLFW/include -I../Ember/vendor/spdlog/include
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
   ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m64 -g
   ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -m64 -g -std=c++11
   ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
-  LIBS += ../bin/Debug-x86_64/Ember/Ember.lib -lspdlog
+  LIBS += ../bin/Debug-x86_64/Ember/Ember.lib -lSpdlog -lglfw3dll
   LDDEPS += ../bin/Debug-x86_64/Ember/Ember.lib
-  ALL_LDFLAGS += $(LDFLAGS) -L../Client/lib -L/usr/lib64 -m64
+  ALL_LDFLAGS += $(LDFLAGS) -L../Ember/vendor/GLFW/lib-mingw-w64 -L../Ember/vendor/spdlog/lib -L/usr/lib64 -m64
   LINKCMD = $(CXX) -o "$@" $(OBJECTS) $(RESOURCES) $(ALL_LDFLAGS) $(LIBS)
   define PREBUILDCMDS
   endef
@@ -42,16 +42,16 @@ ifeq ($(config),release_windows)
   TARGETDIR = ../bin/Release-x86_64/Client
   TARGET = $(TARGETDIR)/Client.exe
   OBJDIR = ../obj/Release-x86_64/Client
-  DEFINES += -DER_ASSERTIONS_ENABLED -DER_RELEASE
-  INCLUDES += -I../Client/include -I../Ember/include -I../Ember/vendor -I../Ember/vendor/spdlog/include -I../Ember/vendor/glad/include
+  DEFINES += -DER_ASSERTIONS_ENABLED -DNDEBUG
+  INCLUDES += -I../Client/src -I../Ember/src -I../Ember/vendor/glad/include -I../Ember/vendor/GLFW/include -I../Ember/vendor/spdlog/include
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
   ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m64 -O2
   ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -m64 -O2 -std=c++11
   ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
-  LIBS += ../bin/Release-x86_64/Ember/Ember.lib -lspdlog
+  LIBS += ../bin/Release-x86_64/Ember/Ember.lib -lSpdlog -lglfw3dll
   LDDEPS += ../bin/Release-x86_64/Ember/Ember.lib
-  ALL_LDFLAGS += $(LDFLAGS) -L../Client/lib -L/usr/lib64 -m64 -s
+  ALL_LDFLAGS += $(LDFLAGS) -L../Ember/vendor/GLFW/lib-mingw-w64 -L../Ember/vendor/spdlog/lib -L/usr/lib64 -m64 -s
   LINKCMD = $(CXX) -o "$@" $(OBJECTS) $(RESOURCES) $(ALL_LDFLAGS) $(LIBS)
   define PREBUILDCMDS
   endef

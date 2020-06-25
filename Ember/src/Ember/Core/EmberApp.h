@@ -1,10 +1,11 @@
 #ifndef EMBER_APP
 #define EMBER_APP
 
-#include "Ember/Core.h"
-#include "Ember/Log.h"
+#include "Ember/Core/Core.h"
+#include "Ember/Core/Log.h"
 #include "Ember/Event/ApplicationEvent.h"
-#include "Ember/Window.h"
+#include "Ember/Core/Window.h"
+#include "Ember/Core/LayerStack.h"
 
 
 namespace Ember
@@ -20,13 +21,20 @@ namespace Ember
         void OnEvent(Event& event);
         bool OnWindowClose(WindowCloseEvent& event);
 
+        void PushLayer(Layer* layer);
+        void PushOverlay(Layer* overlay);
+
         bool isRunning = true;
-        Window* m_Window;
+
+        static EmberApp* instance;
+        static inline EmberApp& Get() { return *instance; };
+
+        LayerStack LayerStack;
+        Window* m_Window;        
     };
 
     // Returns new instance of Client Application.
     extern EmberApp* CreateApp();
-
 };
 
 

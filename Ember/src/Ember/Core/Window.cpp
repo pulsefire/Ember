@@ -1,5 +1,5 @@
-#include "Ember/Window.h"
-#include "Ember/Log.h"
+#include "Ember/Core/Window.h"
+#include "Ember/Core/Log.h"
 
 namespace Ember
 {
@@ -72,7 +72,7 @@ namespace Ember
             {
                 case GLFW_PRESS:
                 {
-                    KeyPressedEvent event(key, 0);
+                    KeyPressedEvent event(key, 0); 
                     data.EventCallback(event);
                     break;
                 }
@@ -126,7 +126,6 @@ namespace Ember
             MouseMovedEvent event(xPos, yPos);
             data.EventCallback(event);
         });
-
 
     };
 

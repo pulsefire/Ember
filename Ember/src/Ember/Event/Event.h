@@ -5,7 +5,7 @@
 #include <sstream>
 #include <functional>
 
-#include "Ember/Core.h"
+#include "Ember/Core/Core.h"
 
 #define SPDLOG_COMPILED_LIB
 #include "spdlog/spdlog.h"
@@ -60,6 +60,11 @@ namespace Ember
             return this->GetEventCategory() & category;
         }
 
+        bool isHandled()
+        {
+            return this->handled;
+        }
+
     protected:
         bool handled = false;
     };
@@ -90,7 +95,7 @@ namespace Ember
         }
 
         template <typename T>
-        bool Dispatch(EventFnType<T> Func)
+        bool Dispatch(const EventFnType<T>& Func)
         {
             if (this->event.GetEventType() == T::GetStaticType())
             {

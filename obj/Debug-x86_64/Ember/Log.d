@@ -1,5 +1,5 @@
-../obj/Debug-x86_64/Ember/Log.o: ../Ember/src/Log.cpp \
- ../Ember/include/Ember/Log.h ../Ember/include/Ember/Core.h \
+../obj/Debug-x86_64/Ember/Log.o: ../Ember/src/Ember/Core/Log.cpp \
+ ../Ember/src/Ember/Core/Log.h ../Ember/src/Ember/Core/Core.h \
  ../Ember/vendor/spdlog/include/spdlog/spdlog.h \
  ../Ember/vendor/spdlog/include/spdlog/common.h \
  ../Ember/vendor/spdlog/include/spdlog/tweakme.h \
@@ -24,9 +24,9 @@
  ../Ember/vendor/spdlog/include/spdlog/formatter.h \
  ../Ember/vendor/spdlog/include/spdlog/details/windows_include.h
 
-../Ember/include/Ember/Log.h:
+../Ember/src/Ember/Core/Log.h:
 
-../Ember/include/Ember/Core.h:
+../Ember/src/Ember/Core/Core.h:
 
 ../Ember/vendor/spdlog/include/spdlog/spdlog.h:
 

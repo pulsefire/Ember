@@ -1,4 +1,4 @@
-#include "Ember/Log.h"
+#include "Ember/Core/Log.h"
 
 namespace Ember
 {

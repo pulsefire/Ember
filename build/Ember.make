@@ -15,16 +15,16 @@ ifeq ($(config),debug_windows)
   TARGETDIR = ../bin/Debug-x86_64/Ember
   TARGET = $(TARGETDIR)/Ember.dll
   OBJDIR = ../obj/Debug-x86_64/Ember
-  DEFINES += -DBUILD_EMBER_DLL -DER_ASSERTIONS_ENABLED -DER_DEBUG
-  INCLUDES += -I../Ember/vendor -I../Ember/vendor/spdlog/include -I../Ember/vendor/glad/include -I../Ember/include
+  DEFINES += -DBUILD_EMBER_DLL -DER_ASSERTIONS_ENABLED -DDEBUG
+  INCLUDES += -I../Ember/src -I../Ember/vendor/glad/include -I../Ember/vendor/GLFW/include -I../Ember/vendor/spdlog/include -I../Ember/vendor/imgui
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
   ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m64 -g
   ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -m64 -g -std=c++11
   ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
-  LIBS += -lglfw3dll -lspdlog
+  LIBS += -lglfw3dll -lSpdlog -lImGui
   LDDEPS +=
-  ALL_LDFLAGS += $(LDFLAGS) -L../Ember/lib -L/usr/lib64 -m64 -shared -Wl,--out-implib="../bin/Debug-x86_64/Ember/Ember.lib"
+  ALL_LDFLAGS += $(LDFLAGS) -L../Ember/vendor/GLFW/lib-mingw-w64 -L../Ember/vendor/spdlog/lib -L../Ember/vendor/imgui/lib -L/usr/lib64 -m64 -shared -Wl,--out-implib="../bin/Debug-x86_64/Ember/Ember.lib"
   LINKCMD = $(CXX) -o "$@" $(OBJECTS) $(RESOURCES) $(ALL_LDFLAGS) $(LIBS)
   define PREBUILDCMDS
   endef
@@ -32,7 +32,7 @@ ifeq ($(config),debug_windows)
   endef
   define POSTBUILDCMDS
 	@echo Running postbuild commands
-	cp ../bin/Debug-x86_64/Ember/Ember.dll ../bin//Debug-x86_64/Client
+	cp ../bin/Debug-x86_64/Ember/Ember.dll ../bin/Debug-x86_64/Client
   endef
 all: prebuild prelink $(TARGET)
 	@:
@@ -44,16 +44,16 @@ ifeq ($(config),release_windows)
   TARGETDIR = ../bin/Release-x86_64/Ember
   TARGET = $(TARGETDIR)/Ember.dll
   OBJDIR = ../obj/Release-x86_64/Ember
-  DEFINES += -DBUILD_EMBER_DLL -DER_ASSERTIONS_ENABLED -DER_RELEASE
-  INCLUDES += -I../Ember/vendor -I../Ember/vendor/spdlog/include -I../Ember/vendor/glad/include -I../Ember/include
+  DEFINES += -DBUILD_EMBER_DLL -DER_ASSERTIONS_ENABLED -DNDEBUG
+  INCLUDES += -I../Ember/src -I../Ember/vendor/glad/include -I../Ember/vendor/GLFW/include -I../Ember/vendor/spdlog/include -I../Ember/vendor/imgui
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
   ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m64 -O2
   ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -m64 -O2 -std=c++11
   ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
-  LIBS += -lglfw3dll -lspdlog
+  LIBS += -lglfw3dll -lSpdlog -lImGui
   LDDEPS +=
-  ALL_LDFLAGS += $(LDFLAGS) -L../Ember/lib -L/usr/lib64 -m64 -shared -Wl,--out-implib="../bin/Release-x86_64/Ember/Ember.lib" -s
+  ALL_LDFLAGS += $(LDFLAGS) -L../Ember/vendor/GLFW/lib-mingw-w64 -L../Ember/vendor/spdlog/lib -L../Ember/vendor/imgui/lib -L/usr/lib64 -m64 -shared -Wl,--out-implib="../bin/Release-x86_64/Ember/Ember.lib" -s
   LINKCMD = $(CXX) -o "$@" $(OBJECTS) $(RESOURCES) $(ALL_LDFLAGS) $(LIBS)
   define PREBUILDCMDS
   endef
@@ -61,7 +61,7 @@ ifeq ($(config),release_windows)
   endef
   define POSTBUILDCMDS
 	@echo Running postbuild commands
-	cp ../bin/Release-x86_64/Ember/Ember.dll ../bin//Release-x86_64/Client
+	cp ../bin/Release-x86_64/Ember/Ember.dll ../bin/Release-x86_64/Client
   endef
 all: prebuild prelink $(TARGET)
 	@:
@@ -70,8 +70,11 @@ endif
 
 OBJECTS := \
 	$(OBJDIR)/EmberApp.o \
+	$(OBJDIR)/Layer.o \
+	$(OBJDIR)/LayerStack.o \
 	$(OBJDIR)/Log.o \
 	$(OBJDIR)/Window.o \
+	$(OBJDIR)/ImGuiLayer.o \
 	$(OBJDIR)/glad.o \
 
 RESOURCES := \
@@ -131,13 +134,22 @@ else
 $(OBJECTS): | $(OBJDIR)
 endif
 
-$(OBJDIR)/EmberApp.o: ../Ember/src/EmberApp.cpp
+$(OBJDIR)/EmberApp.o: ../Ember/src/Ember/Core/EmberApp.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/Log.o: ../Ember/src/Log.cpp
+$(OBJDIR)/Layer.o: ../Ember/src/Ember/Core/Layer.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/Window.o: ../Ember/src/Window.cpp
+$(OBJDIR)/LayerStack.o: ../Ember/src/Ember/Core/LayerStack.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/Log.o: ../Ember/src/Ember/Core/Log.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/Window.o: ../Ember/src/Ember/Core/Window.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/ImGuiLayer.o: ../Ember/src/Ember/ImGui/ImGuiLayer.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/glad.o: ../Ember/vendor/glad/src/glad.c

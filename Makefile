@@ -26,18 +26,18 @@ all: $(PROJECTS)
 Ember:
 ifneq (,$(Ember_config))
 	@echo "==== Building Ember ($(Ember_config)) ===="
-	@${MAKE} --no-print-directory -C . -f Ember.make config=$(Ember_config)
+	@${MAKE} --no-print-directory -C build -f Ember.make config=$(Ember_config)
 endif
 
 Client: Ember
 ifneq (,$(Client_config))
 	@echo "==== Building Client ($(Client_config)) ===="
-	@${MAKE} --no-print-directory -C . -f Client.make config=$(Client_config)
+	@${MAKE} --no-print-directory -C build -f Client.make config=$(Client_config)
 endif
 
 clean:
-	@${MAKE} --no-print-directory -C . -f Ember.make clean
-	@${MAKE} --no-print-directory -C . -f Client.make clean
+	@${MAKE} --no-print-directory -C build -f Ember.make clean
+	@${MAKE} --no-print-directory -C build -f Client.make clean
 
 help:
 	@echo "Usage: make [config=name] [target]"

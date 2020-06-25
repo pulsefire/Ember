@@ -1,7 +1,7 @@
 #ifndef EMBER_WINDOW
 #define EMBER_WINDOW
 
-#include "Ember/Core.h"
+#include "Ember/Core/Core.h"
 #include "Ember/Event/ApplicationEvent.h"
 #include "Ember/Event/KeyEvent.h"
 #include "Ember/Event/MouseEvent.h"

@@ -2,7 +2,7 @@
 #define EMBER_LOG
 
 #include <memory>
-#include "Ember/Core.h"
+#include "Ember/Core/Core.h"
 
 #define SPDLOG_COMPILED_LIB
 #include "spdlog/spdlog.h"

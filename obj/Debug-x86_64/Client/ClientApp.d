@@ -1,6 +1,6 @@
 ../obj/Debug-x86_64/Client/ClientApp.o: ../Client/src/ClientApp.cpp \
- ../Client/include/ClientApp.h ../Ember/include/Ember.h \
- ../Ember/include/Ember/Log.h ../Ember/include/Ember/Core.h \
+ ../Client/src/ClientApp.h ../Ember/src/Ember.h \
+ ../Ember/src/Ember/Core/Log.h ../Ember/src/Ember/Core/Core.h \
  ../Ember/vendor/spdlog/include/spdlog/spdlog.h \
  ../Ember/vendor/spdlog/include/spdlog/common.h \
  ../Ember/vendor/spdlog/include/spdlog/tweakme.h \
@@ -24,26 +24,28 @@
  ../Ember/vendor/spdlog/include/spdlog/sinks/sink.h \
  ../Ember/vendor/spdlog/include/spdlog/formatter.h \
  ../Ember/vendor/spdlog/include/spdlog/details/windows_include.h \
- ../Ember/include/Ember/Event/Event.h \
+ ../Ember/src/Ember/Event/Event.h \
  ../Ember/vendor/spdlog/include/spdlog/fmt/ostr.h \
  ../Ember/vendor/spdlog/include/spdlog/fmt/bundled/ostream.h \
  ../Ember/vendor/spdlog/include/spdlog/fmt/bundled/format.h \
- ../Ember/include/Ember/EmberApp.h ../Ember/include/Ember/Log.h \
- ../Ember/include/Ember/Event/ApplicationEvent.h \
- ../Ember/include/Ember/Event/Event.h ../Ember/include/Ember/Window.h \
- ../Ember/include/Ember/Event/KeyEvent.h \
- ../Ember/include/Ember/Event/MouseEvent.h \
+ ../Ember/src/Ember/Core/EmberApp.h ../Ember/src/Ember/Core/Log.h \
+ ../Ember/src/Ember/Event/ApplicationEvent.h \
+ ../Ember/src/Ember/Event/Event.h ../Ember/src/Ember/Core/Window.h \
+ ../Ember/src/Ember/Event/KeyEvent.h \
+ ../Ember/src/Ember/Event/MouseEvent.h \
  ../Ember/vendor/glad/include/glad/glad.h \
  ../Ember/vendor/glad/include/KHR/khrplatform.h \
- ../Ember/vendor/GLFW/glfw3.h ../Ember/include/Ember/EntryPoint.h
+ ../Ember/vendor/GLFW/include/GLFW/glfw3.h \
+ ../Ember/src/Ember/Core/LayerStack.h ../Ember/src/Ember/Core/Layer.h \
+ ../Ember/src/Ember/Core/EntryPoint.h ../Ember/src/Ember/Core/Layer.h
 
-../Client/include/ClientApp.h:
+../Client/src/ClientApp.h:
 
-../Ember/include/Ember.h:
+../Ember/src/Ember.h:
 
-../Ember/include/Ember/Log.h:
+../Ember/src/Ember/Core/Log.h:
 
-../Ember/include/Ember/Core.h:
+../Ember/src/Ember/Core/Core.h:
 
 ../Ember/vendor/spdlog/include/spdlog/spdlog.h:
 
@@ -91,7 +93,7 @@
 
 ../Ember/vendor/spdlog/include/spdlog/details/windows_include.h:
 
-../Ember/include/Ember/Event/Event.h:
+../Ember/src/Ember/Event/Event.h:
 
 ../Ember/vendor/spdlog/include/spdlog/fmt/ostr.h:
 
@@ -99,24 +101,30 @@
 
 ../Ember/vendor/spdlog/include/spdlog/fmt/bundled/format.h:
 
-../Ember/include/Ember/EmberApp.h:
+../Ember/src/Ember/Core/EmberApp.h:
 
-../Ember/include/Ember/Log.h:
+../Ember/src/Ember/Core/Log.h:
 
-../Ember/include/Ember/Event/ApplicationEvent.h:
+../Ember/src/Ember/Event/ApplicationEvent.h:
 
-../Ember/include/Ember/Event/Event.h:
+../Ember/src/Ember/Event/Event.h:
 
-../Ember/include/Ember/Window.h:
+../Ember/src/Ember/Core/Window.h:
 
-../Ember/include/Ember/Event/KeyEvent.h:
+../Ember/src/Ember/Event/KeyEvent.h:
 
-../Ember/include/Ember/Event/MouseEvent.h:
+../Ember/src/Ember/Event/MouseEvent.h:
 
 ../Ember/vendor/glad/include/glad/glad.h:
 
 ../Ember/vendor/glad/include/KHR/khrplatform.h:
 
-../Ember/vendor/GLFW/glfw3.h:
+../Ember/vendor/GLFW/include/GLFW/glfw3.h:
 
-../Ember/include/Ember/EntryPoint.h:
+../Ember/src/Ember/Core/LayerStack.h:
+
+../Ember/src/Ember/Core/Layer.h:
+
+../Ember/src/Ember/Core/EntryPoint.h:
+
+../Ember/src/Ember/Core/Layer.h:
