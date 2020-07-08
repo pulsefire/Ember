@@ -1,7 +1,8 @@
-../obj/Debug-x86_64/Ember/glad.o: ../Ember/dependencies/glad/src/glad.c \
- ../Ember/dependencies/glad/include/glad/glad.h \
- ../Ember/dependencies/glad/include/KHR/khrplatform.h
+../obj/Debug-x86_64/Ember/glad.o: \
+ ../Ember/src/Dependencies/glad/src/glad.c \
+ ../Ember/src/Dependencies/glad/include/glad/glad.h \
+ ../Ember/src/Dependencies/glad/include/KHR/khrplatform.h
 
-../Ember/dependencies/glad/include/glad/glad.h:
+../Ember/src/Dependencies/glad/include/glad/glad.h:
 
-../Ember/dependencies/glad/include/KHR/khrplatform.h:
+../Ember/src/Dependencies/glad/include/KHR/khrplatform.h:

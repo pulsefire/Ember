@@ -1,12 +1,12 @@
 #ifndef EMBER_H
 #define EMBER_H
 
-#include "Core/Log.h"
-#include "Event/Event.h"
-#include "Core/EmberApp.h"
-#include "Core/EntryPoint.h"
-#include "Core/Layer.h"
-#include "Gui/GuiLayer.h"
+#include "Ember/Core/Log.h"
+#include "Ember/Event/Event.h"
+#include "Ember/Core/EmberApp.h"
+#include "Ember/Core/EntryPoint.h"
+#include "Ember/Core/Layer.h"
+#include "Ember/Gui/GuiLayer.h"
 
 
 #endif
