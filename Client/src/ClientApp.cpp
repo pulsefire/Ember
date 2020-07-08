@@ -17,7 +17,7 @@ public:
 
     void OnEvent(Ember::Event& event) override
     {
-        ER_TRC(event); 
+        // ER_TRC(event); 
     }
 };
 
@@ -28,6 +28,7 @@ ClientApp::ClientApp() : Ember::EmberApp()
     ER_WRN("Welcome to Ember Application!");
 
     this->PushLayer(new ExampleLayer());
+    this->PushOverlay(new Ember::GuiLayer());
 }
 
 ClientApp::~ClientApp()

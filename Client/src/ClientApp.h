@@ -1,7 +1,7 @@
 #ifndef CLIENT_APP
 #define CLEINT_APP
 
-#include "Ember.h"
+#include "Ember/Ember.h"
 
 class ClientApp : public Ember::EmberApp
 {

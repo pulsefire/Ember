@@ -13,6 +13,7 @@ workspace "Ember"
     }
 
     architecture "x64"
+    location "./"
 
 ------------------------------------------
 -----------------EMBER--------------------
@@ -20,19 +21,18 @@ workspace "Ember"
 
 local OutputDir = "%{cfg.buildcfg}-%{cfg.architecture}"
 
--- These were only included once to be build in release mode.
+-- These were only included once to be built in release mode.
 -- include "./Ember/vendor/spdlog"
 -- include "./Ember/vendor/imgui"
 
 -- Include Paths
 IncludeDir = {}
-IncludeDir["glad"] = "./Ember/vendor/glad/include/"
-IncludeDir["GLFW"] = "./Ember/vendor/GLFW/include/"
-IncludeDir["ImGui"] = "./Ember/vendor/imgui/"
-IncludeDir["Spdlog"] = "./Ember/vendor/spdlog/include/"
+IncludeDir["glad"] = "./Ember/dependencies/glad/include/"
+IncludeDir["glfw"] = "./Ember/dependencies/GLFW/include/"
+IncludeDir["imgui"] = "./Ember/dependencies/imgui/"
+IncludeDir["spdlog"] = "./Ember/dependencies/spdlog/include/"
 
 project "Ember"
-    location "Ember"
     kind "SharedLib"
     language "C++"
     targetdir ("./bin/" .. OutputDir .. "/%{prj.name}/")
@@ -41,22 +41,18 @@ project "Ember"
 
     files
     {
-        "./%{prj.name}/src/Ember/**.cpp",
-        "./%{prj.name}/src/Ember/**.h",
-        "./%{prj.name}/vendor/glad/src/glad.c"
+        "./%{prj.name}/src/**.cpp",
+        "./%{prj.name}/src/**.h",
+        "./%{prj.name}/dependencies/glad/src/glad.c"
     }
 
     includedirs
     {   
         "./%{prj.name}/src/",
         "%{IncludeDir.glad}",
-        "%{IncludeDir.GLFW}",
-        "%{IncludeDir.Spdlog}",
-        "%{IncludeDir.ImGui}"
-        -- "./%{prj.name}/vendor/GLFW/include",
-        -- "./%{prj.name}/vendor/spdlog/include",
-        -- "./%{prj.name}/vendor/glad/include"
-        -- "./%{prj.name}/vendor/imgui"
+        "%{IncludeDir.glfw}",
+        "%{IncludeDir.spdlog}",
+        "%{IncludeDir.imgui}"
     }
 
     links
@@ -68,9 +64,9 @@ project "Ember"
 
     libdirs
     {
-        "./%{prj.name}/vendor/GLFW/lib-mingw-w64/",
-        "./%{prj.name}/vendor/spdlog/lib/",
-        "./%{prj.name}/vendor/imgui/lib/"
+        "./%{prj.name}/dependencies/GLFW/lib-mingw-w64/",
+        "./%{prj.name}/dependencies/spdlog/lib/",
+        "./%{prj.name}/dependencies/imgui/lib/"
     }
 
     filter "system:Windows"
@@ -100,13 +96,11 @@ project "Ember"
         defines "NDEBUG"
         optimize "On"
 
-
 ------------------------------------------
 -----------------CLIENT-------------------
 ------------------------------------------
 
-project "Client"
-    location "Client"
+project "Client" 
     kind "ConsoleApp"
     language "C++"
     targetdir ("./bin/" .. OutputDir .. "/%{prj.name}/")
@@ -115,21 +109,19 @@ project "Client"
 
     files
     {
-        "./%{prj.name}/src/**.cpp"
+        "./%{prj.name}/src/**.cpp",
+        "./%{prj.name}/src/**.h"
     }
 
     includedirs
     {
-
-
         "./%{prj.name}/src/",
+        "./Ember/include/",
         "./Ember/src",
         "%{IncludeDir.glad}",
-        "%{IncludeDir.GLFW}",
-        "%{IncludeDir.Spdlog}"
-        -- "./Ember/vendor/GLFW/include",
-        -- "./Ember/vendor/spdlog/include",
-        -- "./Ember/vendor/glad/include"
+        "%{IncludeDir.glfw}",
+        "%{IncludeDir.spdlog}",
+        "%{IncludeDir.imgui}"
     }
 
     links
@@ -141,8 +133,8 @@ project "Client"
 
     libdirs 
     {
-        "./Ember/vendor/GLFW/lib-mingw-w64/",
-        "./Ember/vendor/spdlog/lib/"
+        "./Ember/dependencies/GLFW/lib-mingw-w64/",
+        "./Ember/dependencies/spdlog/lib/"
     }
 
     filter "system:Windows"
@@ -150,7 +142,8 @@ project "Client"
         staticruntime "On"
         systemversion "latest"
 
-        defines {
+        defines 
+        {
             "ER_ASSERTIONS_ENABLED"
         }
 
