@@ -1,1 +1,7 @@
 
+[submodule "Ember/src/Dependencies/spdlog"]
+	path = Ember/src/Dependencies/spdlog
+	url = https://github.com/pulsefire/spdlog
+[submodule "Ember/src/Dependencies/imgui"]
+	path = Ember/src/Dependencies/imgui
+	url = https://github.com/pulsefire/imgui
