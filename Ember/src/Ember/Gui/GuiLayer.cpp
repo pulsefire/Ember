@@ -22,11 +22,7 @@ namespace Ember
         ImGui::StyleColorsDark();
 
         ImGuiIO& io = ImGui::GetIO();
-
-        // this->cambria = io.Fonts->AddFontFromFileTTF("C:\\CDEV\\Ember\\Ember\\dependencies\\imgui\\BubbbleGum.otf", 14.0f, NULL, NULL);
-        // this->cambria = io.Fonts->AddFontFromFileTTF("../../../Ember/res/fonts/BubbbleGum.otf", 14.0f, NULL, NULL);
-        // ER_CORE_ASSERT((this->cambria != nullptr), "Font not loaded!");
-
+        
         io.BackendFlags |= ImGuiBackendFlags_HasMouseCursors;
         io.BackendFlags |= ImGuiBackendFlags_HasSetMousePos;
 

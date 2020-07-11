@@ -16,7 +16,7 @@ ifeq ($(config),debug_windows)
   TARGET = $(TARGETDIR)/Ember.dll
   OBJDIR = ../obj/Debug-x86_64/Ember
   DEFINES += -DBUILD_EMBER_DLL -DER_ASSERTIONS_ENABLED -DDEBUG
-  INCLUDES += -I../Ember/src -I../Ember/src/Dependencies/glad/include -I../Ember/src/Dependencies/GLFW/include -I../Ember/src/Dependencies/spdlog/include -I../Ember/src/Dependencies/imgui
+  INCLUDES += -I../Ember/src -I../Ember/src/vendor/glad/include -I../Ember/src/vendor/GLFW/include -I../Ember/src/vendor/spdlog/include -I../Ember/src/vendor/imgui
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
   ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m64 -g
@@ -24,7 +24,7 @@ ifeq ($(config),debug_windows)
   ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
   LIBS += -lglfw3dll -lSpdlog -lImGui
   LDDEPS +=
-  ALL_LDFLAGS += $(LDFLAGS) -L../Ember/src/Dependencies/GLFW/lib-mingw-w64 -L../Ember/src/Dependencies/spdlog/lib -L../Ember/src/Dependencies/imgui/lib -L/usr/lib64 -m64 -shared -Wl,--out-implib="../bin/Debug-x86_64/Ember/Ember.lib"
+  ALL_LDFLAGS += $(LDFLAGS) -L../Ember/src/vendor/GLFW/lib-mingw-w64 -L../Ember/src/vendor/spdlog/lib -L../Ember/src/vendor/imgui/lib -L/usr/lib64 -m64 -shared -Wl,--out-implib="../bin/Debug-x86_64/Ember/Ember.lib"
   LINKCMD = $(CXX) -o "$@" $(OBJECTS) $(RESOURCES) $(ALL_LDFLAGS) $(LIBS)
   define PREBUILDCMDS
   endef
@@ -45,7 +45,7 @@ ifeq ($(config),release_windows)
   TARGET = $(TARGETDIR)/Ember.dll
   OBJDIR = ../obj/Release-x86_64/Ember
   DEFINES += -DBUILD_EMBER_DLL -DER_ASSERTIONS_ENABLED -DNDEBUG
-  INCLUDES += -I../Ember/src -I../Ember/src/Dependencies/glad/include -I../Ember/src/Dependencies/GLFW/include -I../Ember/src/Dependencies/spdlog/include -I../Ember/src/Dependencies/imgui
+  INCLUDES += -I../Ember/src -I../Ember/src/vendor/glad/include -I../Ember/src/vendor/GLFW/include -I../Ember/src/vendor/spdlog/include -I../Ember/src/vendor/imgui
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
   ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m64 -O2
@@ -53,7 +53,7 @@ ifeq ($(config),release_windows)
   ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
   LIBS += -lglfw3dll -lSpdlog -lImGui
   LDDEPS +=
-  ALL_LDFLAGS += $(LDFLAGS) -L../Ember/src/Dependencies/GLFW/lib-mingw-w64 -L../Ember/src/Dependencies/spdlog/lib -L../Ember/src/Dependencies/imgui/lib -L/usr/lib64 -m64 -shared -Wl,--out-implib="../bin/Release-x86_64/Ember/Ember.lib" -s
+  ALL_LDFLAGS += $(LDFLAGS) -L../Ember/src/vendor/GLFW/lib-mingw-w64 -L../Ember/src/vendor/spdlog/lib -L../Ember/src/vendor/imgui/lib -L/usr/lib64 -m64 -shared -Wl,--out-implib="../bin/Release-x86_64/Ember/Ember.lib" -s
   LINKCMD = $(CXX) -o "$@" $(OBJECTS) $(RESOURCES) $(ALL_LDFLAGS) $(LIBS)
   define PREBUILDCMDS
   endef
@@ -69,13 +69,13 @@ all: prebuild prelink $(TARGET)
 endif
 
 OBJECTS := \
-	$(OBJDIR)/glad.o \
 	$(OBJDIR)/EmberApp.o \
 	$(OBJDIR)/Layer.o \
 	$(OBJDIR)/LayerStack.o \
 	$(OBJDIR)/Log.o \
 	$(OBJDIR)/Window.o \
 	$(OBJDIR)/GuiLayer.o \
+	$(OBJDIR)/glad.o \
 	$(OBJDIR)/imgui_impl_opengl3.o \
 
 RESOURCES := \
@@ -135,9 +135,6 @@ else
 $(OBJECTS): | $(OBJDIR)
 endif
 
-$(OBJDIR)/glad.o: ../Ember/src/Dependencies/glad/src/glad.c
-	@echo $(notdir $<)
-	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/EmberApp.o: ../Ember/src/Ember/Core/EmberApp.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
@@ -156,7 +153,10 @@ $(OBJDIR)/Window.o: ../Ember/src/Ember/Core/Window.cpp
 $(OBJDIR)/GuiLayer.o: ../Ember/src/Ember/Gui/GuiLayer.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/imgui_impl_opengl3.o: ../Ember/src/Ember/Gui/imgui_impl_opengl3.cpp
+$(OBJDIR)/glad.o: ../Ember/src/vendor/glad/src/glad.c
+	@echo $(notdir $<)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/imgui_impl_opengl3.o: ../Ember/src/vendor/imgui/examples/imgui_impl_opengl3.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 

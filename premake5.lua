@@ -49,6 +49,7 @@ project "Ember"
         "./%{prj.name}/src/Ember/**.cpp",
         "./%{prj.name}/src/Ember/**.h",
         "./%{prj.name}/src/vendor/glad/src/glad.c",
+        -- GUI implementation for OpenGl
         "./%{prj.name}/src/vendor/imgui/examples/imgui_impl_opengl3.cpp"
     }
 

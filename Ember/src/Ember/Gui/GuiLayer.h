@@ -7,7 +7,7 @@
 #include "Ember/Core/EmberApp.h"
 
 #include "imgui.h"
-#include "Ember/Gui/imgui_impl_opengl3.h"
+#include "examples/imgui_impl_opengl3.h"
 #include "glad/glad.h"
 
 
