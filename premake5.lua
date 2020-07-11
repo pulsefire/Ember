@@ -27,15 +27,15 @@ local OutputDir = "%{cfg.buildcfg}-%{cfg.architecture}"
 
 -- Include Paths
 IncludeDir = {}
-IncludeDir["glad"] = "./Ember/src/Dependencies/glad/include/"
-IncludeDir["glfw"] = "./Ember/src/Dependencies/GLFW/include/"
-IncludeDir["imgui"] = "./Ember/src/Dependencies/imgui/"
-IncludeDir["spdlog"] = "./Ember/src/Dependencies/spdlog/include/"
+IncludeDir["glad"] = "./Ember/src/vendor/glad/include/"
+IncludeDir["glfw"] = "./Ember/src/vendor/GLFW/include/"
+IncludeDir["imgui"] = "./Ember/src/vendor/imgui/"
+IncludeDir["spdlog"] = "./Ember/src/vendor/spdlog/include/"
 
 LibDir = {}
-LibDir["glfw"] = "./Ember/src/Dependencies/GLFW/lib-mingw-w64/"
-LibDir["spdlog"] = "./Ember/src/Dependencies/spdlog/lib/"
-LibDir["imgui"] = "./Ember/src/Dependencies/imgui/lib/"
+LibDir["glfw"] = "./Ember/src/vendor/GLFW/lib-mingw-w64/"
+LibDir["spdlog"] = "./Ember/src/vendor/spdlog/lib/"
+LibDir["imgui"] = "./Ember/src/vendor/imgui/lib/"
 
 project "Ember"
     kind "SharedLib"
@@ -48,7 +48,8 @@ project "Ember"
     {
         "./%{prj.name}/src/Ember/**.cpp",
         "./%{prj.name}/src/Ember/**.h",
-        "./%{prj.name}/src/Dependencies/glad/src/glad.c"
+        "./%{prj.name}/src/vendor/glad/src/glad.c",
+        "./%{prj.name}/src/vendor/imgui/examples/imgui_impl_opengl3.cpp"
     }
 
     includedirs
@@ -69,9 +70,9 @@ project "Ember"
 
     libdirs
     {
-        "./%{prj.name}/src/Dependencies/GLFW/lib-mingw-w64/",
-        "./%{prj.name}/src/Dependencies/spdlog/lib/",
-        "./%{prj.name}/src/Dependencies/imgui/lib/"
+        "./%{prj.name}/src/vendor/GLFW/lib-mingw-w64/",
+        "./%{prj.name}/src/vendor/spdlog/lib/",
+        "./%{prj.name}/src/vendor/imgui/lib/"
     }
 
     filter "system:Windows"
@@ -138,8 +139,8 @@ project "Client"
 
     libdirs 
     {
-        "./Ember/src/Dependencies/GLFW/lib-mingw-w64/",
-        "./Ember/src/Dependencies/spdlog/lib/"
+        "./Ember/src/vendor/GLFW/lib-mingw-w64/",
+        "./Ember/src/vendor/spdlog/lib/"
     }
 
     filter "system:Windows"
