@@ -2,6 +2,3 @@
 [submodule "Ember/src/vendor/imgui"]
 	path = Ember/src/vendor/imgui
 	url = https://github.com/pulsefire/imgui
-[submodule "Ember/src/vendor/spdlog"]
-	path = Ember/src/vendor/spdlog
-	url = https://github.com/pulsefire/spdlog
