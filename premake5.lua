@@ -27,15 +27,15 @@ local OutputDir = "%{cfg.buildcfg}-%{cfg.architecture}"
 
 -- Include Paths
 IncludeDir = {}
-IncludeDir["glad"] = "./Ember/src/vendor/glad/include/"
-IncludeDir["glfw"] = "./Ember/src/vendor/GLFW/include/"
-IncludeDir["imgui"] = "./Ember/src/vendor/imgui/"
-IncludeDir["spdlog"] = "./Ember/src/vendor/spdlog/include/"
+IncludeDir["glad"] = "./Ember/vendor/glad/include/"
+IncludeDir["glfw"] = "./Ember/vendor/GLFW/include/"
+IncludeDir["imgui"] = "./Ember/vendor/imgui/"
+IncludeDir["spdlog"] = "./Ember/vendor/spdlog/include/"
 
 LibDir = {}
-LibDir["glfw"] = "./Ember/src/vendor/GLFW/lib-mingw-w64/"
-LibDir["spdlog"] = "./Ember/src/vendor/spdlog/lib/"
-LibDir["imgui"] = "./Ember/src/vendor/imgui/lib/"
+LibDir["glfw"] = "./Ember/vendor/GLFW/lib-mingw-w64/"
+LibDir["spdlog"] = "./Ember/vendor/spdlog/lib/"
+LibDir["imgui"] = "./Ember/vendor/imgui/lib/"
 
 project "Ember"
     kind "SharedLib"
@@ -71,9 +71,9 @@ project "Ember"
 
     libdirs
     {
-        "./%{prj.name}/src/vendor/GLFW/lib-mingw-w64/",
-        "./%{prj.name}/src/vendor/spdlog/lib/",
-        "./%{prj.name}/src/vendor/imgui/lib/"
+        "./%{prj.name}/vendor/GLFW/lib-mingw-w64/",
+        "./%{prj.name}/vendor/spdlog/lib/",
+        "./%{prj.name}/vendor/imgui/lib/"
     }
 
     filter "system:Windows"
@@ -134,14 +134,12 @@ project "Client"
     links
     {
         "Ember",
-        "Spdlog",
-        "glfw3dll"
+        "Spdlog"
     }
 
     libdirs 
     {
-        "./Ember/src/vendor/GLFW/lib-mingw-w64/",
-        "./Ember/src/vendor/spdlog/lib/"
+        "./Ember/vendor/spdlog/lib/"
     }
 
     filter "system:Windows"

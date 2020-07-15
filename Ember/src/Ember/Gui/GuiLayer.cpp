@@ -54,7 +54,7 @@ namespace Ember
 
     void GuiLayer::OnDetach()
     {
-
+        
     }
 
     void GuiLayer::OnUpdate()
