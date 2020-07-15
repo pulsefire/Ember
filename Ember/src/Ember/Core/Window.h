@@ -42,10 +42,15 @@ namespace Ember
         void OnUpdate();
         void Shutdown();
 
-        WindowData WinData;
-        GLFWwindow* m_Buffer;
+        GLFWwindow* GetNativeWindow();
+        int GetWidth();
+        int GetHeight();
 
         static bool glfwInitialised;
+
+    private:
+        WindowData WinData;
+        GLFWwindow* m_Buffer;
     };
 };
 

@@ -77,5 +77,9 @@ namespace Ember
         overlay->OnAttach();
     }
 
-    
+
+    Window* EmberApp::GetWindow()
+    {
+        return m_Window;
+    }
 };

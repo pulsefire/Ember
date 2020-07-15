@@ -17,7 +17,11 @@ public:
 
     void OnEvent(Ember::Event& event) override
     {
-        // ER_TRC(event); 
+        if (event.GetEventType() == Ember::EventType::KeyPress)
+        {
+            Ember::KeyPressEvent& keyevent = (Ember::KeyPressEvent&)event;
+            ER_CORE_TRC("{0}", (char)keyevent.GetKeyCode());
+        }
     }
 };
 

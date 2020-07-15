@@ -60,10 +60,10 @@ namespace Ember
     void GuiLayer::OnUpdate()
     {
         ImGuiIO& io = ImGui::GetIO();
-
+ 
         // Access application/window data like singleton
         EmberApp& app = EmberApp::Get();
-        io.DisplaySize = ImVec2(app.m_Window->WinData.width, app.m_Window->WinData.height);
+        io.DisplaySize = ImVec2(app.GetWindow()->GetWidth(), app.GetWindow()->GetHeight());
 
         float time = (float)glfwGetTime();
         io.DeltaTime = (m_Time > 0.0f ? (time - m_Time) : (1.0f / 60.0f));
@@ -89,7 +89,6 @@ namespace Ember
 
     void GuiLayer::OnEvent(Event& event)
     {
-        // ER_CORE_TRC(event);
         EventDispatcher dispatcher(event);
         dispatcher.Dispatch<MousePressEvent>(std::bind(&GuiLayer::OnMousePressEvent, this, std::placeholders::_1));
         dispatcher.Dispatch<MouseReleaseEvent>(std::bind(&GuiLayer::OnMouseReleaseEvent, this, std::placeholders::_1));
@@ -148,6 +147,8 @@ namespace Ember
         io.KeyAlt = io.KeysDown[GLFW_KEY_LEFT_ALT] || io.KeysDown[GLFW_KEY_RIGHT_ALT];
 
         io.KeySuper = false;
+
+        return false;
     }
 
     bool GuiLayer::OnKeyReleaseEvent(KeyReleaseEvent& event)
@@ -160,6 +161,8 @@ namespace Ember
         io.KeyAlt = io.KeysDown[GLFW_KEY_LEFT_ALT] || io.KeysDown[GLFW_KEY_RIGHT_ALT];
 
         io.KeySuper = false;
+
+        return false;
     }
 
     bool GuiLayer::OnKeyTypeEvent(KeyTypeEvent& event)  

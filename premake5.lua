@@ -21,9 +21,8 @@ workspace "Ember"
 
 local OutputDir = "%{cfg.buildcfg}-%{cfg.architecture}"
 
--- These were only included once to be built in release mode.
--- include "./Ember/vendor/spdlog"
--- include "./Ember/vendor/imgui"
+include "./Ember/vendor/spdlog"
+include "./Ember/vendor/imgui"
 
 -- Include Paths
 IncludeDir = {}
@@ -48,9 +47,9 @@ project "Ember"
     {
         "./%{prj.name}/src/Ember/**.cpp",
         "./%{prj.name}/src/Ember/**.h",
-        "./%{prj.name}/src/vendor/glad/src/glad.c",
+        "./%{prj.name}/vendor/glad/src/glad.c",
         -- GUI implementation for OpenGl
-        "./%{prj.name}/src/vendor/imgui/examples/imgui_impl_opengl3.cpp"
+        "./%{prj.name}/vendor/imgui/examples/imgui_impl_opengl3.cpp"
     }
 
     includedirs

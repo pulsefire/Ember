@@ -29,6 +29,9 @@ namespace Ember
         static EmberApp* instance;
         static inline EmberApp& Get() { return *instance; };
 
+        Window* GetWindow();
+
+    private:
         LayerStack LayerStack;
         Window* m_Window;        
     };

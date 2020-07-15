@@ -1,84 +1,84 @@
 ../obj/Debug-x86_64/Ember/Log.o: ../Ember/src/Ember/Core/Log.cpp \
  ../Ember/src/Ember/Core/Log.h ../Ember/src/Ember/Core/Core.h \
- ../Ember/src/vendor/spdlog/include/spdlog/spdlog.h \
- ../Ember/src/vendor/spdlog/include/spdlog/common.h \
- ../Ember/src/vendor/spdlog/include/spdlog/tweakme.h \
- ../Ember/src/vendor/spdlog/include/spdlog/details/null_mutex.h \
- ../Ember/src/vendor/spdlog/include/spdlog/fmt/fmt.h \
- ../Ember/src/vendor/spdlog/include/spdlog/fmt/bundled/core.h \
- ../Ember/src/vendor/spdlog/include/spdlog/fmt/bundled/format.h \
- ../Ember/src/vendor/spdlog/include/spdlog/fmt/bundled/core.h \
- ../Ember/src/vendor/spdlog/include/spdlog/details/registry.h \
- ../Ember/src/vendor/spdlog/include/spdlog/cfg/log_levels.h \
- ../Ember/src/vendor/spdlog/include/spdlog/logger.h \
- ../Ember/src/vendor/spdlog/include/spdlog/details/log_msg.h \
- ../Ember/src/vendor/spdlog/include/spdlog/details/backtracer.h \
- ../Ember/src/vendor/spdlog/include/spdlog/details/log_msg_buffer.h \
- ../Ember/src/vendor/spdlog/include/spdlog/details/circular_q.h \
- ../Ember/src/vendor/spdlog/include/spdlog/version.h \
- ../Ember/src/vendor/spdlog/include/spdlog/details/synchronous_factory.h \
- ../Ember/src/vendor/spdlog/include/spdlog/fmt/ostr.h \
- ../Ember/src/vendor/spdlog/include/spdlog/fmt/bundled/ostream.h \
- ../Ember/src/vendor/spdlog/include/spdlog/fmt/bundled/format.h \
- ../Ember/src/vendor/spdlog/include/spdlog/sinks/stdout_color_sinks.h \
- ../Ember/src/vendor/spdlog/include/spdlog/sinks/wincolor_sink.h \
- ../Ember/src/vendor/spdlog/include/spdlog/details/console_globals.h \
- ../Ember/src/vendor/spdlog/include/spdlog/sinks/sink.h \
- ../Ember/src/vendor/spdlog/include/spdlog/formatter.h \
- ../Ember/src/vendor/spdlog/include/spdlog/details/windows_include.h
+ ../Ember/vendor/spdlog/include/spdlog/spdlog.h \
+ ../Ember/vendor/spdlog/include/spdlog/common.h \
+ ../Ember/vendor/spdlog/include/spdlog/tweakme.h \
+ ../Ember/vendor/spdlog/include/spdlog/details/null_mutex.h \
+ ../Ember/vendor/spdlog/include/spdlog/fmt/fmt.h \
+ ../Ember/vendor/spdlog/include/spdlog/fmt/bundled/core.h \
+ ../Ember/vendor/spdlog/include/spdlog/fmt/bundled/format.h \
+ ../Ember/vendor/spdlog/include/spdlog/fmt/bundled/core.h \
+ ../Ember/vendor/spdlog/include/spdlog/details/registry.h \
+ ../Ember/vendor/spdlog/include/spdlog/cfg/log_levels.h \
+ ../Ember/vendor/spdlog/include/spdlog/logger.h \
+ ../Ember/vendor/spdlog/include/spdlog/details/log_msg.h \
+ ../Ember/vendor/spdlog/include/spdlog/details/backtracer.h \
+ ../Ember/vendor/spdlog/include/spdlog/details/log_msg_buffer.h \
+ ../Ember/vendor/spdlog/include/spdlog/details/circular_q.h \
+ ../Ember/vendor/spdlog/include/spdlog/version.h \
+ ../Ember/vendor/spdlog/include/spdlog/details/synchronous_factory.h \
+ ../Ember/vendor/spdlog/include/spdlog/fmt/ostr.h \
+ ../Ember/vendor/spdlog/include/spdlog/fmt/bundled/ostream.h \
+ ../Ember/vendor/spdlog/include/spdlog/fmt/bundled/format.h \
+ ../Ember/vendor/spdlog/include/spdlog/sinks/stdout_color_sinks.h \
+ ../Ember/vendor/spdlog/include/spdlog/sinks/wincolor_sink.h \
+ ../Ember/vendor/spdlog/include/spdlog/details/console_globals.h \
+ ../Ember/vendor/spdlog/include/spdlog/sinks/sink.h \
+ ../Ember/vendor/spdlog/include/spdlog/formatter.h \
+ ../Ember/vendor/spdlog/include/spdlog/details/windows_include.h
 
 ../Ember/src/Ember/Core/Log.h:
 
 ../Ember/src/Ember/Core/Core.h:
 
-../Ember/src/vendor/spdlog/include/spdlog/spdlog.h:
+../Ember/vendor/spdlog/include/spdlog/spdlog.h:
 
-../Ember/src/vendor/spdlog/include/spdlog/common.h:
+../Ember/vendor/spdlog/include/spdlog/common.h:
 
-../Ember/src/vendor/spdlog/include/spdlog/tweakme.h:
+../Ember/vendor/spdlog/include/spdlog/tweakme.h:
 
-../Ember/src/vendor/spdlog/include/spdlog/details/null_mutex.h:
+../Ember/vendor/spdlog/include/spdlog/details/null_mutex.h:
 
-../Ember/src/vendor/spdlog/include/spdlog/fmt/fmt.h:
+../Ember/vendor/spdlog/include/spdlog/fmt/fmt.h:
 
-../Ember/src/vendor/spdlog/include/spdlog/fmt/bundled/core.h:
+../Ember/vendor/spdlog/include/spdlog/fmt/bundled/core.h:
 
-../Ember/src/vendor/spdlog/include/spdlog/fmt/bundled/format.h:
+../Ember/vendor/spdlog/include/spdlog/fmt/bundled/format.h:
 
-../Ember/src/vendor/spdlog/include/spdlog/fmt/bundled/core.h:
+../Ember/vendor/spdlog/include/spdlog/fmt/bundled/core.h:
 
-../Ember/src/vendor/spdlog/include/spdlog/details/registry.h:
+../Ember/vendor/spdlog/include/spdlog/details/registry.h:
 
-../Ember/src/vendor/spdlog/include/spdlog/cfg/log_levels.h:
+../Ember/vendor/spdlog/include/spdlog/cfg/log_levels.h:
 
-../Ember/src/vendor/spdlog/include/spdlog/logger.h:
+../Ember/vendor/spdlog/include/spdlog/logger.h:
 
-../Ember/src/vendor/spdlog/include/spdlog/details/log_msg.h:
+../Ember/vendor/spdlog/include/spdlog/details/log_msg.h:
 
-../Ember/src/vendor/spdlog/include/spdlog/details/backtracer.h:
+../Ember/vendor/spdlog/include/spdlog/details/backtracer.h:
 
-../Ember/src/vendor/spdlog/include/spdlog/details/log_msg_buffer.h:
+../Ember/vendor/spdlog/include/spdlog/details/log_msg_buffer.h:
 
-../Ember/src/vendor/spdlog/include/spdlog/details/circular_q.h:
+../Ember/vendor/spdlog/include/spdlog/details/circular_q.h:
 
-../Ember/src/vendor/spdlog/include/spdlog/version.h:
+../Ember/vendor/spdlog/include/spdlog/version.h:
 
-../Ember/src/vendor/spdlog/include/spdlog/details/synchronous_factory.h:
+../Ember/vendor/spdlog/include/spdlog/details/synchronous_factory.h:
 
-../Ember/src/vendor/spdlog/include/spdlog/fmt/ostr.h:
+../Ember/vendor/spdlog/include/spdlog/fmt/ostr.h:
 
-../Ember/src/vendor/spdlog/include/spdlog/fmt/bundled/ostream.h:
+../Ember/vendor/spdlog/include/spdlog/fmt/bundled/ostream.h:
 
-../Ember/src/vendor/spdlog/include/spdlog/fmt/bundled/format.h:
+../Ember/vendor/spdlog/include/spdlog/fmt/bundled/format.h:
 
-../Ember/src/vendor/spdlog/include/spdlog/sinks/stdout_color_sinks.h:
+../Ember/vendor/spdlog/include/spdlog/sinks/stdout_color_sinks.h:
 
-../Ember/src/vendor/spdlog/include/spdlog/sinks/wincolor_sink.h:
+../Ember/vendor/spdlog/include/spdlog/sinks/wincolor_sink.h:
 
-../Ember/src/vendor/spdlog/include/spdlog/details/console_globals.h:
+../Ember/vendor/spdlog/include/spdlog/details/console_globals.h:
 
-../Ember/src/vendor/spdlog/include/spdlog/sinks/sink.h:
+../Ember/vendor/spdlog/include/spdlog/sinks/sink.h:
 
-../Ember/src/vendor/spdlog/include/spdlog/formatter.h:
+../Ember/vendor/spdlog/include/spdlog/formatter.h:
 
-../Ember/src/vendor/spdlog/include/spdlog/details/windows_include.h:
+../Ember/vendor/spdlog/include/spdlog/details/windows_include.h:

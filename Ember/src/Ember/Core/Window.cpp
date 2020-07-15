@@ -159,4 +159,19 @@ namespace Ember
     {
         glfwDestroyWindow(this->m_Buffer);
     }
+
+    GLFWwindow* Window::GetNativeWindow()
+    {
+        return m_Buffer;
+    }
+
+    int Window::GetWidth()
+    {
+        return WinData.width;
+    }
+
+    int Window::GetHeight()
+    {
+        return WinData.height;
+    }
 };

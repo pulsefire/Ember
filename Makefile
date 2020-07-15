@@ -9,33 +9,51 @@ ifndef verbose
 endif
 
 ifeq ($(config),debug_windows)
+  Spdlog_config = release_windows
+  ImGui_config = release_windows
   Ember_config = debug_windows
   Client_config = debug_windows
 endif
 ifeq ($(config),release_windows)
+  Spdlog_config = release_windows
+  ImGui_config = release_windows
   Ember_config = release_windows
   Client_config = release_windows
 endif
 
-PROJECTS := Ember Client
+PROJECTS := Spdlog ImGui Ember Client
 
 .PHONY: all clean help $(PROJECTS) 
 
 all: $(PROJECTS)
 
-Ember:
+Spdlog:
+ifneq (,$(Spdlog_config))
+	@echo "==== Building Spdlog ($(Spdlog_config)) ===="
+	@${MAKE} --no-print-directory -C Ember/vendor/spdlog/build -f Makefile config=$(Spdlog_config)
+endif
+
+ImGui:
+ifneq (,$(ImGui_config))
+	@echo "==== Building ImGui ($(ImGui_config)) ===="
+	@${MAKE} --no-print-directory -C Ember/vendor/imgui/build -f Makefile config=$(ImGui_config)
+endif
+
+Ember: Spdlog ImGui
 ifneq (,$(Ember_config))
 	@echo "==== Building Ember ($(Ember_config)) ===="
 	@${MAKE} --no-print-directory -C build -f Ember.make config=$(Ember_config)
 endif
 
-Client: Ember
+Client: Ember Spdlog
 ifneq (,$(Client_config))
 	@echo "==== Building Client ($(Client_config)) ===="
 	@${MAKE} --no-print-directory -C build -f Client.make config=$(Client_config)
 endif
 
 clean:
+	@${MAKE} --no-print-directory -C Ember/vendor/spdlog/build -f Makefile clean
+	@${MAKE} --no-print-directory -C Ember/vendor/imgui/build -f Makefile clean
 	@${MAKE} --no-print-directory -C build -f Ember.make clean
 	@${MAKE} --no-print-directory -C build -f Client.make clean
 
@@ -49,6 +67,8 @@ help:
 	@echo "TARGETS:"
 	@echo "   all (default)"
 	@echo "   clean"
+	@echo "   Spdlog"
+	@echo "   ImGui"
 	@echo "   Ember"
 	@echo "   Client"
 	@echo ""

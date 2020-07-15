@@ -16,15 +16,15 @@ ifeq ($(config),debug_windows)
   TARGET = $(TARGETDIR)/Ember.dll
   OBJDIR = ../obj/Debug-x86_64/Ember
   DEFINES += -DBUILD_EMBER_DLL -DER_ASSERTIONS_ENABLED -DDEBUG
-  INCLUDES += -I../Ember/src -I../Ember/src/vendor/glad/include -I../Ember/src/vendor/GLFW/include -I../Ember/src/vendor/spdlog/include -I../Ember/src/vendor/imgui
+  INCLUDES += -I../Ember/src -I../Ember/vendor/glad/include -I../Ember/vendor/GLFW/include -I../Ember/vendor/spdlog/include -I../Ember/vendor/imgui
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
   ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m64 -g
   ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -m64 -g -std=c++11
   ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
-  LIBS += -lglfw3dll -lSpdlog -lImGui
-  LDDEPS +=
-  ALL_LDFLAGS += $(LDFLAGS) -L../Ember/src/vendor/GLFW/lib-mingw-w64 -L../Ember/src/vendor/spdlog/lib -L../Ember/src/vendor/imgui/lib -L/usr/lib64 -m64 -shared -Wl,--out-implib="../bin/Debug-x86_64/Ember/Ember.lib"
+  LIBS += ../Ember/vendor/spdlog/lib/Spdlog.lib ../Ember/vendor/imgui/lib/ImGui.lib -lglfw3dll
+  LDDEPS += ../Ember/vendor/spdlog/lib/Spdlog.lib ../Ember/vendor/imgui/lib/ImGui.lib
+  ALL_LDFLAGS += $(LDFLAGS) -L../Ember/vendor/GLFW/lib-mingw-w64 -L../Ember/vendor/spdlog/lib -L../Ember/vendor/imgui/lib -L/usr/lib64 -m64 -shared -Wl,--out-implib="../bin/Debug-x86_64/Ember/Ember.lib"
   LINKCMD = $(CXX) -o "$@" $(OBJECTS) $(RESOURCES) $(ALL_LDFLAGS) $(LIBS)
   define PREBUILDCMDS
   endef
@@ -45,15 +45,15 @@ ifeq ($(config),release_windows)
   TARGET = $(TARGETDIR)/Ember.dll
   OBJDIR = ../obj/Release-x86_64/Ember
   DEFINES += -DBUILD_EMBER_DLL -DER_ASSERTIONS_ENABLED -DNDEBUG
-  INCLUDES += -I../Ember/src -I../Ember/src/vendor/glad/include -I../Ember/src/vendor/GLFW/include -I../Ember/src/vendor/spdlog/include -I../Ember/src/vendor/imgui
+  INCLUDES += -I../Ember/src -I../Ember/vendor/glad/include -I../Ember/vendor/GLFW/include -I../Ember/vendor/spdlog/include -I../Ember/vendor/imgui
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
   ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m64 -O2
   ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -m64 -O2 -std=c++11
   ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
-  LIBS += -lglfw3dll -lSpdlog -lImGui
-  LDDEPS +=
-  ALL_LDFLAGS += $(LDFLAGS) -L../Ember/src/vendor/GLFW/lib-mingw-w64 -L../Ember/src/vendor/spdlog/lib -L../Ember/src/vendor/imgui/lib -L/usr/lib64 -m64 -shared -Wl,--out-implib="../bin/Release-x86_64/Ember/Ember.lib" -s
+  LIBS += ../Ember/vendor/spdlog/lib/Spdlog.lib ../Ember/vendor/imgui/lib/ImGui.lib -lglfw3dll
+  LDDEPS += ../Ember/vendor/spdlog/lib/Spdlog.lib ../Ember/vendor/imgui/lib/ImGui.lib
+  ALL_LDFLAGS += $(LDFLAGS) -L../Ember/vendor/GLFW/lib-mingw-w64 -L../Ember/vendor/spdlog/lib -L../Ember/vendor/imgui/lib -L/usr/lib64 -m64 -shared -Wl,--out-implib="../bin/Release-x86_64/Ember/Ember.lib" -s
   LINKCMD = $(CXX) -o "$@" $(OBJECTS) $(RESOURCES) $(ALL_LDFLAGS) $(LIBS)
   define PREBUILDCMDS
   endef
@@ -153,10 +153,10 @@ $(OBJDIR)/Window.o: ../Ember/src/Ember/Core/Window.cpp
 $(OBJDIR)/GuiLayer.o: ../Ember/src/Ember/Gui/GuiLayer.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/glad.o: ../Ember/src/vendor/glad/src/glad.c
+$(OBJDIR)/glad.o: ../Ember/vendor/glad/src/glad.c
 	@echo $(notdir $<)
 	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/imgui_impl_opengl3.o: ../Ember/src/vendor/imgui/examples/imgui_impl_opengl3.cpp
+$(OBJDIR)/imgui_impl_opengl3.o: ../Ember/vendor/imgui/examples/imgui_impl_opengl3.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 
