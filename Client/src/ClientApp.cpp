@@ -20,7 +20,9 @@ public:
         if (event.GetEventType() == Ember::EventType::KeyPress)
         {
             Ember::KeyPressEvent& keyevent = (Ember::KeyPressEvent&)event;
-            ER_CORE_TRC("{0}", (char)keyevent.GetKeyCode());
+            if (keyevent.GetKeyCode() == ER_KEY_TAB);
+                ER_CRT("Tab pressed!");
+            // ER_CORE_TRC("{0}", (char)keyevent.GetKeyCode());
         }
     }
 };
