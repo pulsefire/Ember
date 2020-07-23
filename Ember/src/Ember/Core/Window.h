@@ -6,8 +6,7 @@
 #include "Ember/Event/KeyEvent.h"
 #include "Ember/Event/MouseEvent.h"
 
-#include "glad/glad.h"
-#include "GLFW/glfw3.h"
+#include "Ember/Renderer/RenderingContext.h"
 
 namespace Ember
 {
@@ -51,6 +50,7 @@ namespace Ember
     private:
         WindowData WinData;
         GLFWwindow* m_Buffer;
+        RenderingContext* m_Context;
     };
 };
 

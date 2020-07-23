@@ -36,9 +36,10 @@ namespace Ember
         }
         // Create glfw window
         this->m_Buffer = glfwCreateWindow(this->WinData.width, this->WinData.height, this->WinData.title.c_str(), NULL, NULL);
-        glfwMakeContextCurrent(this->m_Buffer);
-        // Load OpenGL
-        gladLoadGL();
+
+        m_Context = new RenderingContext(m_Buffer);
+        m_Context->Init();
+
         // Set WindowData as user defined data. 
         glfwSetWindowUserPointer(this->m_Buffer, &this->WinData);
         this->SetVSync(true);
@@ -152,7 +153,7 @@ namespace Ember
     void Window::OnUpdate()
     {
         glfwPollEvents();
-        glfwSwapBuffers(this->m_Buffer);
+        m_Context->SwapBuffers();
     }
 
     void Window::Shutdown()

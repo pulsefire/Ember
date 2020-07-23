@@ -18,14 +18,14 @@
             { \
                 if (!(arg)) \
                 { \
-                   ER_ERR("Assertion Failed: {0}, {1}, {2}", __VA_ARGS__, __LINE__, __FILE__); \
+                   ER_ERR("Assertion Failed: {0} {1} {2}", __VA_ARGS__, __LINE__, __FILE__); \
                 } \
             }
     #define ER_CORE_ASSERT(arg, ...) \
         { \
             if (!(arg)) \
             { \
-                ER_CORE_ERR("Assertion Failed: {0}, {1}, {2}", __VA_ARGS__, __LINE__, __FILE__); \
+                ER_CORE_ERR("Assertion Failed: {0} {1} {2}", __VA_ARGS__, __LINE__, __FILE__); \
             } \
         }
 #else

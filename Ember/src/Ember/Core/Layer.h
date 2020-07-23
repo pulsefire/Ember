@@ -19,6 +19,8 @@ namespace Ember
 
         virtual void OnUpdate();
         virtual void OnEvent(Event& event);
+
+        virtual void OnGuiRender();
         
         inline std::string& GetName() { return this->debugName; };
     

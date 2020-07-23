@@ -21,8 +21,8 @@ workspace "Ember"
 
 local OutputDir = "%{cfg.buildcfg}-%{cfg.architecture}"
 
-include "./Ember/vendor/spdlog"
-include "./Ember/vendor/imgui"
+-- include "./Ember/vendor/spdlog"
+-- include "./Ember/vendor/imgui"
 
 -- Include Paths
 IncludeDir = {}
@@ -49,7 +49,8 @@ project "Ember"
         "./%{prj.name}/src/Ember/**.h",
         "./%{prj.name}/vendor/glad/src/glad.c",
         -- GUI implementation for OpenGl
-        "./%{prj.name}/vendor/imgui/examples/imgui_impl_opengl3.cpp"
+        "./%{prj.name}/vendor/imgui/examples/imgui_impl_opengl3.cpp",
+        "./%{prj.name}/vendor/imgui/examples/imgui_impl_glfw.cpp"
     }
 
     includedirs
@@ -141,15 +142,17 @@ project "Client"
         "./Ember/vendor/spdlog/lib/"
     }
 
+    defines 
+    {
+        "ER_ASSERTIONS_ENABLED",
+        "IMGUI_API=__declspec(dllimport)"
+    }
+
+
     filter "system:Windows"
         cppdialect "C++11"
         staticruntime "On"
         systemversion "latest"
-
-        defines 
-        {
-            "ER_ASSERTIONS_ENABLED"
-        }
 
     filter "configurations:Debug"
         defines "DEBUG"

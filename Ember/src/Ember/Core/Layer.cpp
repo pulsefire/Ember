@@ -32,4 +32,9 @@ namespace Ember
     {
 
     }
+
+    void Layer::OnGuiRender()
+    {
+        
+    }
 };
