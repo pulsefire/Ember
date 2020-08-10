@@ -1,20 +1,25 @@
 #ifndef EMBER_RENDERER_API
 #define EMBER_RENDERER_API
 
+#include "Ember/Renderer/RenderCommand.h"
+#include "Ember/Renderer/VertexArray.h"
+
 namespace Ember
 {
-    enum class RendererAPI
-    {
-        None = 0,
-        OpenGL = 1
-    };
 
     class Renderer
     {
     public:
-        inline static RendererAPI GetCurrentAPI() { return s_RendererAPI; }; 
+        static void BeginScene();
+        static void EndScene();
+        static void Submit(VertexArray* vertexArray);
+
+    public:
+        inline static RendererAPI::API GetCurrentAPI() { return RendererAPI::GetCurrentAPI(); }; 
+
     private:
-        static RendererAPI s_RendererAPI;
+
+
     };
 };
 

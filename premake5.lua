@@ -11,7 +11,7 @@ workspace "Ember"
     {
         "Windows"
     }
-
+    
     architecture "x64"
     location "./"
 
@@ -30,6 +30,7 @@ IncludeDir["glad"] = "./Ember/vendor/glad/include/"
 IncludeDir["glfw"] = "./Ember/vendor/GLFW/include/"
 IncludeDir["imgui"] = "./Ember/vendor/imgui/"
 IncludeDir["spdlog"] = "./Ember/vendor/spdlog/include/"
+IncludeDir["linmath"] = "./Ember/vendor/linmath.h"
 
 LibDir = {}
 LibDir["glfw"] = "./Ember/vendor/GLFW/lib-mingw-w64/"
@@ -59,7 +60,8 @@ project "Ember"
         "%{IncludeDir.glad}",
         "%{IncludeDir.glfw}",
         "%{IncludeDir.spdlog}",
-        "%{IncludeDir.imgui}"
+        "%{IncludeDir.imgui}",
+        "%{IncludeDir.linmath}"
     }
 
     links
@@ -128,7 +130,8 @@ project "Client"
         "%{IncludeDir.glad}",
         "%{IncludeDir.glfw}",
         "%{IncludeDir.spdlog}",
-        "%{IncludeDir.imgui}"
+        "%{IncludeDir.imgui}",
+        "%{IncludeDir.linmath}"
     }
 
     links

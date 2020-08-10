@@ -9,8 +9,8 @@ namespace Ember
     {
         switch (Renderer::GetCurrentAPI())
         {
-            case RendererAPI::None:   ER_CORE_ASSERT(false, "RendererAPI::None not supported!"); return nullptr;
-            case RendererAPI::OpenGL: return new OpenGLShader(vertexSrc, fragmentSrc);
+            case RendererAPI::API::None:   ER_CORE_ASSERT(false, "RendererAPI::None not supported!"); return nullptr;
+            case RendererAPI::API::OpenGL: return new OpenGLShader(vertexSrc, fragmentSrc);
         }
         ER_CORE_ASSERT(false, "Unknown Renderer!")
         return nullptr;

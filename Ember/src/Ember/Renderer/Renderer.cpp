@@ -1,9 +1,20 @@
-
-
 #include "Ember/Renderer/Renderer.h"
 
 
 namespace Ember
 {
-    RendererAPI Renderer::s_RendererAPI = RendererAPI::OpenGL;
+    void Renderer::BeginScene()
+    {
+
+    }
+
+    void Renderer::EndScene()
+    {
+        
+    };
+
+    void Renderer::Submit(VertexArray* vertexArray)
+    {
+        
+    }
 };

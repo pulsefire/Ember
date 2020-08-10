@@ -25,7 +25,7 @@ namespace Ember
             std::string title;
             EventFn EventCallback;
 
-            WindowData(int w = 1280, int h = 720, std::string t = "Ember Engine")
+            WindowData(int w = 800, int h = 600, std::string t = "Ember Engine")
                 : width(w), height(h), title(t)
             {
                 

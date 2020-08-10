@@ -5,7 +5,9 @@
 // wont have any knowledge of Application class
 // We need to message events from Windows class to Application class.
 
+
 #include <iostream>
+#include "linmath.h"
 
 namespace Ember
 {
@@ -13,24 +15,6 @@ namespace Ember
 #define BIND_EVENT_FN(func) std::bind(&EmberApp::func, this, std::placeholders::_1)
 
     EmberApp* EmberApp::instance = nullptr;
-
-    static GLenum ShaderToGLBaseDataType(ShaderDataType& Type)
-    {
-        switch (Type)
-        {
-            case ShaderDataType::Float:  return GL_FLOAT;
-            case ShaderDataType::Float2: return GL_FLOAT;
-            case ShaderDataType::Float3: return GL_FLOAT;
-            case ShaderDataType::Float4: return GL_FLOAT;
-            case ShaderDataType::Int:    return GL_INT;
-            case ShaderDataType::Int2:   return GL_INT;
-            case ShaderDataType::Int3:   return GL_INT;
-            case ShaderDataType::Int4:   return GL_INT;
-            case ShaderDataType::Mat3:   return GL_FLOAT;
-            case ShaderDataType::Mat4:   return GL_FLOAT;
-            case ShaderDataType::Bool:   return GL_BOOL;
-        }
-    };
 
     EmberApp::EmberApp()
     {
@@ -43,30 +27,26 @@ namespace Ember
         this->m_GuiLayer = new GuiLayer();
         PushOverlay(m_GuiLayer);
 
+        m_VertexArray = VertexArray::Create();
+
         //////////////////////
 
-        // float vertices[18] = 
-        // {
-        //    -0.5f, -0.5f, 0.0f,  1.0f, 0.0f, 0.0f,
-        //     0.5f, -0.5f, 0.0f,  0.0f, 1.0f, 0.0f,
-        //     0.0f,  0.5f, 0.0f,  0.0f, 0.0f, 1.0f
-        // };
-
-        unsigned int indices[3] =
+        unsigned int indices[6] =
         {
-            0,1,2
+            0,1,2,
+            2,3,0
         };
 
-        float vertices[15] = 
+        vec2 v = {1,2};
+
+        float vertices[24] = 
         {
-           -0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
-            0.5f, -0.5f, 0.0f, 0.0f, 1.0f,
-            0.0f,  0.5f, 0.0f, 0.0f, 0.0f
+           -0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f,
+            0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f,
+            0.5f,  0.5f, 0.0f, 0.0f, 0.0f, 1.0f,
+           -0.5f,  0.5f, 0.0f, 1.0f, 1.0f, 1.0f
         };
 
-        // std::cout << sizeof(vertices) << std::endl;
-
-        
         // glGenVertexArrays(1, &m_VertexArray);
         // glBindVertexArray(m_VertexArray);
 
@@ -87,36 +67,28 @@ namespace Ember
         BufferLayout layout = 
         {
             { ShaderDataType::Float3, "a_Position", false },
-            { ShaderDataType::Float2, "a_Color" , false }
+            { ShaderDataType::Float3, "a_Color" , false }
         };
 
-        glCreateVertexArrays(1, &m_VertexArray);
-        glBindVertexArray(m_VertexArray);
+        IndexBuffer* indexBuffer = IndexBuffer::Create(indices, sizeof(indices) / sizeof(unsigned int));
+        VertexBuffer* vertexBuffer = VertexBuffer::Create(vertices, sizeof(vertices));
+        vertexBuffer->SetLayout(layout);
 
-        m_IndexBuffer = IndexBuffer::Create(indices, sizeof(indices) / sizeof(unsigned int));
-        m_VertexBuffer = VertexBuffer::Create(vertices, sizeof(vertices));
+        m_VertexArray->AddVertexBuffer(vertexBuffer);
+        m_VertexArray->AddIndexBuffer(indexBuffer);
 
-        unsigned int idx = 0;
-        for (auto& element : layout)
-        {
-            glEnableVertexAttribArray(idx);
-            glVertexAttribPointer(idx, element.GetComponentCount(), ShaderToGLBaseDataType(element.Type), (element.Normalised ? GL_TRUE : GL_FALSE), layout.GetStride(), (const void*)element.Offset);
-            idx++;
-        }
-
-        
 
         std::string vertexSrc = R"(
             #version 330
             
             layout (location = 0) in vec3 a_Position;
-            layout (location = 1) in vec2 a_Color;
+            layout (location = 1) in vec3 a_Color;
             out vec4 m_Color;
 
             void main()
             {
                 gl_Position = vec4(a_Position, 1.0);
-                m_Color = vec4(a_Color, 1.0, 1.0);
+                m_Color = vec4(a_Color, 1.0);
             }
         )";
 
@@ -153,8 +125,8 @@ namespace Ember
             glClear(GL_COLOR_BUFFER_BIT);
 
             m_Shader->Bind();
-            glBindVertexArray(m_VertexArray);
-            glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
+            m_VertexArray->Bind();
+            glDrawElements(GL_TRIANGLES, m_VertexArray->GetIndexBuffers()->GetCount(), GL_UNSIGNED_INT, 0);
 
 
 

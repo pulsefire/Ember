@@ -14,12 +14,12 @@ namespace Ember
     {
         switch (Renderer::GetCurrentAPI())
         {
-            case RendererAPI::None:
+            case RendererAPI::API::None:
             {
                 ER_CORE_ASSERT(false, "RendererAPI::None not supported!");
                 return nullptr;
             }
-            case RendererAPI::OpenGL:
+            case RendererAPI::API::OpenGL:
             {
                 return new OpenGLVertexBuffer(vertices, size);
             }
@@ -104,12 +104,12 @@ namespace Ember
     {
         switch (Renderer::GetCurrentAPI())
         {
-            case RendererAPI::None:
+            case RendererAPI::API::None:
             {
                 ER_CORE_ASSERT(false, "RendererAPI::None not supported!");
                 return nullptr;
             }
-            case RendererAPI::OpenGL:
+            case RendererAPI::API::OpenGL:
             {
                 return new OpenGLIndexBuffer(vertices, size);
             }
